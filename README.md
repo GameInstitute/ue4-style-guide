@@ -1,233 +1,229 @@
-# [Gamemakin](https://gamemak.in) UE4 Style Guide() {
+# [Gamemakin](https://gamemak.in) UE4 工程规范() {
 
-*A mostly reasonable approach to Unreal Engine 4*
+*最合理的UE4规范*
 
-Heavily inspired by the [Airbnb Javascript Style Guide](https://github.com/airbnb/javascript).
+灵感来源于Airbnb的JS规范 [Airbnb Javascript Style Guide](https://github.com/airbnb/javascript).
 
 [![Analytics](https://ga-beacon.appspot.com/UA-80567399-1/repo?useReferrer)](#) ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
 
-## Unreal Engine 4 Linter Plugin
+## 为Unreal Engine 4开发的Linter插件
 
-An automated method of checking your project against this style guide is available for purchase at [the Unreal Engine marketplace](https://www.unrealengine.com/marketplace/linter). This plugin's source code will eventually be free, but in order to use with UE4 without building the engine from source code, please use the marketplace version.
+一套可以自动检查UE4工程规范的插件已经在[虚幻商城](https://www.unrealengine.com/marketplace/linter)。出售。插件源码会免费提供，但为了避免编译源码，请从虚幻商城上下载该插件使用。
 
-## Discuss This Style Guide
+## 讨论该规范
 
-Gamemakin LLC has a public Discord channel at http://discord.gamemak.in with a #linter channel if you'd like to discuss all things style guide and Linter plugin.
+Gamemakin LLC 有一个公开的讨论板块，地址是http://discord.gamemak.in ，如果你有关于本套规范或者插件的任何想法，都可以在其中的#linter频道中讨论。
 
-## Linking To This Document
+## 链接到本文档
 
-Every section of this style guide is numbered for both easy reference and easy linking. You can link to any section directly by simply append a hash tag and the section number to the end of http://ue4.style
-For example, if you want to send someone to the first principle of this style guide you would append `#0.1`, resulting in http://ue4.style#0.1.
+本文（英文原文）的任何章节都有数字超链接地址，你可以直接通过本文的短地址http://ue4.style 再加上章节编号，直接链接到本文的任意位置。
+例如，如果你想链接到本文的第一节，可以使用地址http://ue4.style#0.1
 
-## Forks And Translations
+* [韩语翻译](https://github.com/ymkim50/ue4-style-guide/blob/master/README_Kor.md) by ymkim50
+* [俄语翻译](https://github.com/CosmoMyzrailGorynych/ue4-style-guide-rus/blob/master/README.md) by CosmoMyzrailGorynych
+* [日语翻译](https://github.com/akenatsu/ue4-style-guide/blob/master/README.jp.md) by akenatsu
+* [中文翻译](https://github.com/skylens-inc/ue4-style-guide/blob/master/README.md) by Beijing Skylens Tech.
 
-If you have made a notable fork or translation that is not suitable for a pull request into this repo, please submit a pull request to add the fork or translation here.
-
-* [Korean Translation](https://github.com/ymkim50/ue4-style-guide/blob/master/README_Kor.md) by ymkim50
-* [Russian Translation](https://github.com/CosmoMyzrailGorynych/ue4-style-guide-rus/blob/master/README.md) by CosmoMyzrailGorynych
-* [Japanese Translation](https://github.com/akenatsu/ue4-style-guide/blob/master/README.jp.md) by akenatsu
-* [Chinese Translation](https://github.com/skylens-inc/ue4-style-guide/blob/master/README.md) by Beijing Skylens Tech.
-
-## Important Terminology
+## 重要术语
 
 <a name="terms-level-map"></a>
-##### Levels/Maps
+##### Levels/Maps(关卡/地图)
 
-The word 'map' generally refers to what the average person calls a 'level' and may be used interchangeably. See this term's history [here](https://en.wikipedia.org/wiki/Level_(video_gaming)).
+“map”(地图)这个词通常也会被称为“level”(关卡)，两者的含义是等同的，在[这里](https://en.wikipedia.org/wiki/Level_(video_gaming))可以查看这个词的发展经历
 
 <a name="terms-cases"></a>
-##### Cases
+##### 大小写
 
-There are a few different ways you can name things. Here are some common casing types:
+对于字母大小写的规范有数种，以下是几种常见的几种
 
-> ###### PascalCase
+> ###### 帕斯卡拼写法
 >
-> Capitalize every word and remove all spaces, e.g. `DesertEagle`, `StyleGuide`, `ASeriesOfWords`.
+> 每个单词的首字母都是大写，单词之间没有其他字符，例如 ：`DesertEagle`, `StyleGuide`, `ASeriesOfWords`。
 > 
-> ###### camelCase
+> ###### 骆驼拼写法
 >
-> The first letter is always lowercase but every following word starts with uppercase, e.g. `desertEagle`, `styleGuide`, `aSeriesOfWords`.
+> 第一个单词的首字母小写，后面的单词的首字母大写，例如：`desertEagle`, `styleGuide`, `aSeriesOfWords`。
 >
 > ###### Snake_case
 >
-> Words can arbitrarily start upper or lowercase but words are separated by an underscore, e.g. `desert_Eagle`, `Style_Guide`, `a_Series_of_Words`.
+> 单词之间用下划线链接，单词的首字母可以大写也可以小写，例如：`desert_Eagle`, `Style_Guide`, `a_Series_of_Words`
 
 <a name="terms-var-prop"></a>
-##### Variables / Properties
+##### Variables / Properties(变量/属性)
 
-The words 'variable' and 'property' in most contexts are interchangable. If they are both used together in the same context however:
+'变量'和'属性'两个词在很多情况下是可以互相通用的。但如果他们同时出现在一个环境时，含义有一些不同：
 
 <a name="terms-property"></a>
-###### Property 
-Usually refers to a variable defined in a class. For example, if `BP_Barrel` had a variable `bExploded`, `bExploded` may be referred to as a property of `BP_Barrel`. 
+###### Property (属性)
+'属性'通常定义在一个类的内部。例如，如果一个类`BP_Barrel`有一个内部成员`bExploded`，那么`bExploded`可以是做是`BP_Barrel`的一个属性
 
-When in the context of a class, often used to imply accessing previously defined data.
+当'属性'用在类的内部时，通常用来获取已经定义好的数据
 
 <a name="terms-variable"></a>
-###### Variable 
-Usually refers to a variable defined as a function argument or a local variable inside a function.
+###### Variable (变量)
+'变量'通常用在给函数传递参数，或者用在函数内的局部变量
 
-When in the context of a class, often used to convey discussion about its definition and what it will hold.
+当'变量'用在类的内部时，通常是用来定义什么或者用来保存某些数据的。
 
 <a name="0"></a>
-## 0. Principles
+## 0. 原则
 
-These principles have been adapted from [idomatic.js style guide](https://github.com/rwaldron/idiomatic.js/).
+以下原则改编自[idomatic.js代码规范](https://github.com/rwaldron/idiomatic.js/)。
 
 <a name="0.1"></a>
-### 0.1 If your UE4 project already has a style guide, you should follow it.
+### 0.1 如果你的项目已经存在现有规范，那么请继续遵守这套规范。
 
-If you are working on a project or with a team that has a pre-existing style guide, it should be respected.  Any inconsistency between an existing style guide and this guide should defer to the existing.
+如果你工作的项目或你的团队已经有一套自己的规范，那么请尊重它。如果现有规范和本套规范发生冲突，请继续遵守原规范。
 
-Style guides should be living documents however and you should propose style guide changes to an existing style guide as well as this guide if you feel the change benefits all usages.
+好的项目规范应该是不断进步的，当你发现有好的更改可以适合所有用户时，你应该建议去更改现有规范
 
-> #### "Arguments over style are pointless. There should be a style guide, and you should follow it."
+> #### "对规范优劣的争论是没有意义的，有规范你就该去遵守。"
 > [_Rebecca Murphey_](https://rmurphey.com)
 
 <a name="0.2"></a>
-### 0.2 All structure, assets, and code in any Unreal Engine 4 project should look like a single person created it, no matter how many people contributed.
+### 0.2 不管团队中有多少人，工程中所有的数据结构、资源、代码风格应该统一，如同是同一个人的作品
 
-Moving from one project to another should not cause a re-learning of style and structure. Conforming to a style guide removes unneeded guesswork and ambiguities.
+把资源从一个工程迁移到另一个工程不应该产生新的学习成本，所有资源应该符合项目规范，消除不必要的歧义和不确定性
 
-It also allows for more productive creation and maintenance as one does not need to think about style, simply follow instructions. This style guide is written with best practices in mind, meaning that by following this style guide you will also minimize hard to track issues.
+遵守规范可以促进对于项目的生产和维护效率，因为团队成员不用去考虑规范问题，只需要去遵守。本套规范根据诸多优秀经验编写，遵守它意味着可以少走很多弯路。
 
 <a name="0.3"></a>
-### 0.3 Friends do not let friends have bad style.
+### 0.3 好哥们也得讲原则。
 
-If you see someone working either against a style guide or no style guide, try to correct them.
+如果你发现同事不遵守规范，你该去纠正他
 
-When working within a team or discussing within a community such as [Unreal Slackers](http://join.unrealslackers.org/), it is far easier to help and to ask for help when people are consistent. Nobody likes to help untangle someone's Blueprint spaghetti or deal with assets with names they can't understand.
+当你在团队中工作时，或者在社区提问时(例如[Unreal Slackers](http://join.unrealslackers.org/))，你会发现如果大家都遵守同一套规范会容易的多，没有人愿意在面对一堆乱糟糟的蓝图或者莫名其妙的代码时帮你解决问题。
 
-If you are helping someone who's work conforms to a different but consistent and sane style guide, you should be able to adapt to it. If they do not conform to any style guide, please direct them here.
+如果你要帮助的人使用另一套不同但很健全的规范，你应该去适应它，如果他们没有遵守任何规范，那么带他们来这儿。
 
 <a name="0.4"></a>
-### 0.4 A team without a style guide is no team of mine.
+### 0.4 没有规范的团队不是真正的团队.
 
-When joining an Unreal Engine 4 team one of your first questions should be "Do you have a style guide?". If the answer is no, you should be skeptical about their ability to work as a team.
+当你要加入一个新的UE4团队时，你应该首先问他们有没有项目规范，如果没有的话，你该怀疑他们是否有能力像一个真正的团队那样工作。
 
 <a name="0.5"></a>
-### 0.5 Don't Break The Law
+### 0.5 不要违反法律
 
-Gamemakin LLC is not a lawyer, but please don't introduce illegal actions and behavior to a project, including but not limited to:
+Gamemakin LLC不是律师，但请不要将非法操作和行为引入项目，包括但不限于：
 
-* Don't distribute content you don't have the rights to distribute
-* Don't infringe on someone else's copyrighted or trademark material
-* Don't steal content
-* Follow licensing restrictions on content, e.g. attribute when attributions are needed
+* 请勿分发您无权分发的内容
+* 请勿侵犯他人的版权或商标材料
+* 不要窃取内容
+* 遵守内容的许可限制
 
 <a name="toc"></a>
-## Table of Contents
+## 目录
 
-> 1. [Asset Naming Conventions](#anc)
-> 1. [Directory Structure](#structure)
-> 1. [Blueprints](#bp)
+> 1. [资源命名约定](#anc)
+> 1. [目录结构](#structure)
+> 1. [蓝图](#bp)
 
 <a name="anc"></a>
 <a name="1"></a>
-## 1. Asset Naming Conventions ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
+## 1. 资源命名约定 ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
 
-Naming conventions should be treated as law. A project that conforms to a naming convention is able to have its assets managed, searched, parsed, and maintained with incredible ease.
+对于资源的命名的规范应该像法律一样被遵守。一个项目如果有好的命名规范，那么在资源管理、查找、解析、维护时，都会有极大的便利性。
 
-Most things are prefixed with prefixes being generally an acronym of the asset type followed by an underscore.
+大多数资源的命名都应该有前缀，前缀一般是资源类型的缩写，然后使用下划线和资源名链接。
 
 <a name="base-asset-name"></a>
 <a name="1.1"></a>
-### 1.1 Base Asset Name - `Prefix_BaseAssetName_Variant_Suffix` ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
+### 1.1 基本命名规则 `Prefix_BaseAssetName_Variant_Suffix` ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
 
-All assets should have a _Base Asset Name_. A Base Asset Name represents a logical grouping of related assets. Any asset that is part of this logical group should follow the the standard of  `Prefix_BaseAssetName_Variant_Suffix`.
+时刻记住这个命名规范`Prefix_BaseAssetName_Variant_Suffix`，只要遵守它，大部分情况下都可以让命名规范。下面是详细的解释。
 
-Keeping the pattern `Prefix_BaseAssetName_Variant_Suffix` and in mind and using common sense is generally enough to warrant good asset names. Here are some detailed rules regarding each element.
+`Prefix`(前缀) 和 `Suffix`(后缀)由资源类型确定，请参照下面的[资源类型表](#asset-name-modifiers)。
 
-`Prefix` and `Suffix` are to be determined by the asset type through the following [Asset Name Modifier](#asset-name-modifiers) tables.
+所有资源都应该有一个`BaseAssetName`(基本资源名)。所谓基本资源名表明该资源在逻辑关系上属于那种资源，任何属于该逻辑组的资源都应该遵守同样的命名规范
 
-`BaseAssetName` should be determined by short and easily recognizable name related to the context of this group of assets. For example, if you had a character named Bob, all of Bob's assets would have the `BaseAssetName` of `Bob`.
+基本资源名应该使用简短而便于识别的词汇，例如，如果你有一个角色名字叫做Bob，那么所有和Bob相关的资源的`BaseAssetName`都应该叫做`Bob`
 
-For unique and specific variations of assets, `Variant` is either a short and easily recognizable name that represents logical grouping of assets that are a subset of an asset's base name. For example, if Bob had multiple skins these skins should still use `Bob` as the `BaseAssetName` but include a recognizable `Variant`. An 'Evil' skin would be referred to as `Bob_Evil` and a 'Retro' skin would be referred to as `Bob_Retro`.
+`Varient`(扩展名)用来保证资源的唯一性，同样，扩展名也应该是简短而容易理解的短词，以说明该资源在所属的资源逻辑组中的子集。例如，如果Bob有多套皮肤，那么这些皮肤资源都应该使用Bob作为基本资源名同时包含扩展名，例如'Evil'类型的皮肤资源，名字应该是`Bob_Evil`，而Retro类型的皮肤应该是用`Bob_Retro`
 
-For unique but generic variations of assets, `Variant` is a two digit number starting at `01`. For example, if you have an environment artist generating nondescript rocks, they would be named `Rock_01`, `Rock_02`, `Rock_03`, etc. Except for rare exceptions, you should never require a three digit variant number. If you have more than 100 assets, you should consider organizing them with different base names or using multiple variant names.
+一般来说，如果仅仅是为了保证资源的唯一性，`Varient`可以使用从`01`开始的两位数字来表示。例如，如果你要制作一堆环境中使用的石头资源，那么他们应该命名为`Rock_01`, `Rock_02`, `Rock_03`等等。除非特殊需要，不要让数字超过三位数，如果你真的需要超过100个的资源序列，那么你应该考虑使用多个基础资源名
 
-Depending on how your asset variants are made, you can chain together variant names. For example, if you are creating flooring assets for an Arch Viz project you should use the base name `Flooring` with chained variants such as `Flooring_Marble_01`, `Flooring_Maple_01`, `Flooring_Tile_Squares_01`.
+基于你所制作的资源扩展属性，你可以把多个扩展名串联起来。例如，如果你在制作一套地板所使用的资源，那么你的资源除了使用`Flooring`作为基本名，扩展名可以使用多个，例如`Flooring_Marble_01`, `Flooring_Maple_01`, `Flooring_Tile_Squares_01`。
 
 <a name="1.1-examples"></a>
-#### 1.1 Examples
+#### 1.1 范例
 
 ##### 1.1e1 Bob
 
-| Asset Type              | Asset Name                                                 |
+| 资源类型                | 资源名                                                     |
 | ----------------------- | ---------------------------------------------------------- |
-| Skeletal Mesh           | SK_Bob                                                     |
-| Material                | M_Bob                                                      |
-| Texture (Diffuse/Albedo)| T_Bob_D                                                    |
-| Texture (Normal)        | T_Bob_N                                                    |
-| Texture (Evil Diffuse)  | T_Bob_Evil_D                                               |
+| 蒙皮网格模型Skeletal Mesh           | SK_Bob                                                     |
+| 材质Material                | M_Bob                                                      |
+| 贴图Texture (Diffuse/Albedo)| T_Bob_D                                                    |
+| 贴图Texture (Normal)        | T_Bob_N                                                    |
+| 贴图Texture (Evil Diffuse)  | T_Bob_Evil_D                                               |
 
 ##### 1.1e2 Rocks
 
-| Asset Type              | Asset Name                                                 |
+| 资源类型                | 资源名                                                     |
 | ----------------------- | ---------------------------------------------------------- |
-| Static Mesh (01)        | S_Rock_01                                                  |
-| Static Mesh (02)        | S_Rock_02                                                  |
-| Static Mesh (03)        | S_Rock_03                                                  |
-| Material                | M_Rock                                                     |
-| Material Instance (Snow)| MI_Rock_Snow                                               |
+| 静态网格模型Static Mesh (01)        | S_Rock_01                                                  |
+| 静态网格模型Static Mesh (02)        | S_Rock_02                                                  |
+| 静态网格模型Static Mesh (03)        | S_Rock_03                                                  |
+| 材质Material                | M_Rock                                                     |
+| 材质实例Material Instance (Snow)| MI_Rock_Snow                                               |
 
 <a name="asset-name-modifiers"></a>
 <a name="1.2"></a>
-### 1.2 Asset Name Modifiers ![#](https://img.shields.io/badge/lint-supported-green.svg)
+### 1.2 资源类型表 ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-When naming an asset use these tables to determine the prefix and suffix to use with an asset's [Base Asset Name](#base-asset-name).
+当给一个资源命名的时候，请参照以下表格来决定在[资本资源名](#base-asset-name)前后所使用的前缀和后缀
 
-#### Sections
+#### 目录
 
-> 1.2.1 [Most Common](#anc-common)
+> 1.2.1 通用类型[Most Common](#anc-common)
 
-> 1.2.2 [Animations](#anc-animations)
+> 1.2.2 动作[Animations](#anc-animations)
 
-> 1.2.3 [Artificial Intelligence](#anc-ai)
+> 1.2.3 人工智能[Artificial Intelligence](#anc-ai)
 
-> 1.2.4 [Blueprints](#anc-bp)
+> 1.2.4 蓝图[Blueprints](#anc-bp)
 
-> 1.2.5 [Materials](#anc-materials)
+> 1.2.5 材质[Materials](#anc-materials)
 
-> 1.2.6 [Textures](#anc-textures)
+> 1.2.6 纹理[Textures](#anc-textures)
 
-> 1.2.7 [Miscellaneous](#anc-misc)
+> 1.2.7 杂项[Miscellaneous](#anc-misc)
 
 > 1.2.8 [Paper 2D](#anc-paper2d)
 
-> 1.2.9 [Physics](#anc-physics)
+> 1.2.9 物理[Physics](#anc-physics)
 
-> 1.2.10 [Sound](#anc-sound)
+> 1.2.10 声音[Sound](#anc-sound)
 
-> 1.2.11 [User Interface](#anc-ui)
+> 1.2.11 界面[User Interface](#anc-ui)
 
-> 1.2.12 [Effects](#anc-effects)
+> 1.2.12 特效[Effects](#anc-effects)
 
 <a name="anc-common"></a>
 <a name="1.2.1"></a>
-#### 1.2.1 Most Common ![#](https://img.shields.io/badge/lint-supported-green.svg)
+#### 1.2.1 通用类型 ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-| Asset Type              | Prefix     | Suffix     | Notes                            |
+| 资源类型                | 前缀       | 后缀       | 备注                             |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
-| Level / Map             |            |            | [Should be in a folder called Maps.](#2.4) |
-| Level (Persistent)      |            | _P         |                                  |
-| Level (Audio)           |            | _Audio     |                                  |
-| Level (Lighting)        |            | _Lighting  |                                  |
-| Level (Geometry)        |            | _Geo       |                                  |
-| Level (Gameplay)        |            | _Gameplay  |                                  |
-| Blueprint               | BP_        |            |                                  |
-| Material                | M_         |            |                                  |
-| Static Mesh             | S_         |            | Many use SM_. We use S_.         |
-| Skeletal Mesh           | SK_        |            |                                  |
-| Texture                 | T_         | _?         | See [Textures](#anc-textures)    |
-| Particle System         | PS_        |            |                                  |
-| Widget Blueprint        | WBP_       |            |                                  |
+| 关卡 / 地图             |            |            | [所有地图应该放在Maps目录下](#2.4) |
+| 关卡 (永久)             |            | _P         |                                  |
+| 关卡 (音效)             |            | _Audio     |                                  |
+| 关卡 (光照)             |            | _Lighting  |                                  |
+| 关卡 (几何体)           |            | _Geo       |                                  |
+| 关卡 (游戏性)           |            | _Gameplay  |                                  |
+| 蓝图                    | BP_        |            |                                  |
+| 材质                    | M_         |            |                                  |
+| 静态网格模型            | S_         |            | 许多人使用SM_。我们使用S_。      |
+| 蒙皮网格模型            | SK_        |            |                                  |
+| 贴图                    | T_         | _?         | 参照[纹理](#anc-textures)    |
+| 粒子系统                | PS_        |            |                                  |
+| 界面控件蓝图            | WBP_       |            |                                  |
 
 <a name="anc-animations"></a>
 <a name="1.2.2"></a>
-#### 1.2.2 Animations ![#](https://img.shields.io/badge/lint-supported-green.svg)
+#### 1.2.2 动画 ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-| Asset Type              | Prefix     | Suffix     | Notes                            |
+| 资源类型                | 前缀       | 后缀       | 备注                             |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
 | Aim Offset              | AO_        |            |                                  |
 | Aim Offset 1D           | AO_        |            |                                  |
@@ -246,9 +242,9 @@ When naming an asset use these tables to determine the prefix and suffix to use 
 
 <a name="anc-ai"></a>
 <a name="1.2.3"></a>
-### 1.2.3 Artificial Intelligence ![#](https://img.shields.io/badge/lint-supported-green.svg)
+### 1.2.3 AI ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-| Asset Type              | Prefix     | Suffix     | Notes                            |
+| 资源类型                | 前缀       | 后缀       | 备注                             |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
 | AI Controller           | AIC_       |            |                                  |
 | Behavior Tree           | BT_        |            |                                  |
@@ -259,25 +255,25 @@ When naming an asset use these tables to determine the prefix and suffix to use 
 
 <a name="anc-bp"></a>
 <a name="1.2.4"></a>
-### 1.2.4 Blueprints ![#](https://img.shields.io/badge/lint-supported-green.svg)
+### 1.2.4 蓝图 ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-| Asset Type              | Prefix     | Suffix     | Notes                            |
+| 资源类型                | 前缀       | 后缀       | 备注                             |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
 | Blueprint               | BP_        |            |                                  |
-| Blueprint Component	  | BP_	       | Component  | I.e. BP_InventoryComponent       |
+| Blueprint Component	  | BP_	       | Component  | 例如BP_InventoryComponent        |
 | Blueprint Function Library | BPFL_   |            |                                  |
 | Blueprint Interface     | BPI_       |            |                                  |
-| Blueprint Macro Library | BPML_      |            | Do not use macro libraries if possible. |
-| Enumeration             | E          |            | No underscore.                   |
-| Structure               | F or S     |            | No underscore.                   |
+| Blueprint Macro Library | BPML_      |            | 可能的话尽量不要使用蓝图宏       |
+| Enumeration             | E          |            | 没有下划线                       |
+| Structure               | F 或 S     |            | 没有下划线                       |
 | Tutorial Blueprint      | TBP_       |            |                                  |
 | Widget Blueprint        | WBP_       |            |                                  |
 
 <a name="anc-materials"></a>
 <a name="1.2.5"></a>
-### 1.2.5 Materials ![#](https://img.shields.io/badge/lint-supported-green.svg)
+### 1.2.5 材质 ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-| Asset Type              | Prefix     | Suffix     | Notes                            |
+| 资源类型                | 前缀       | 后缀       | 备注                             |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
 | Material                | M_         |            |                                  |
 | Material (Post Process) | PP_        |            |                                  |
@@ -289,9 +285,9 @@ When naming an asset use these tables to determine the prefix and suffix to use 
 
 <a name="anc-textures"></a>
 <a name="1.2.6"></a>
-### 1.2.6 Textures ![#](https://img.shields.io/badge/lint-supported-green.svg)
+### 1.2.6 纹理 ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-| Asset Type              | Prefix     | Suffix     | Notes                            |
+| 资源类型                | 前缀       | 后缀       | 备注                             |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
 | Texture                 | T_         |            |                                  |
 | Texture (Diffuse/Albedo/Base Color)| T_ | _D      |                                  |
@@ -303,7 +299,7 @@ When naming an asset use these tables to determine the prefix and suffix to use 
 | Texture (Emissive)      | T_         | _E         |                                  |
 | Texture (Mask)          | T_         | _M         |                                  |
 | Texture (Specular)      | T_         | _S         |                                  |
-| Texture (Packed)        | T_         | _*         | See notes below about [packing](#anc-textures-packing). |
+| Texture (Packed)        | T_         | _*         | 参见下面的[纹理打包备注](#anc-textures-packing). |
 | Texture Cube            | TC_        |            |                                  |
 | Media Texture           | MT_        |            |                                  |
 | Render Target           | RT_        |            |                                  |
@@ -312,24 +308,24 @@ When naming an asset use these tables to determine the prefix and suffix to use 
 
 <a name="anc-textures-packing"></a>
 <a name="1.2.6.1"></a>
-#### 1.2.6.1 Texture Packing ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
-It is common practice to pack multiple layers of texture data into one texture. An example of this is packing Emissive, Roughness, Ambient Occlusion together as the Red, Green, and Blue channels of a texture respectively. To determine the suffix, simply stack the given suffix letters from above together, e.g. `_ERO`.
+#### 1.2.6.1 纹理合并 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+把多张纹理存于一个纹理文件中是很常见的方法，比如通常可以把自发光(Emissive), 粗糙度(Roughness), 环境光(Ambient Occlusion)以RGB通道的形式保存在纹理中，然后在文件的后缀中，注明这些信息，例如`_EGO`
 
-> It is generally acceptable to include an Alpha/Opacity layer in your Diffuse/Albedo's alpha channel and as this is common practice, adding `A` to the `_D` suffix is optional.
+> 一般来说，在纹理的Diffuse信息中附带Alpha/Opacity信息是很常见的，这时在`_D`后缀中可以加入`A`也可以不用加
 
-Packing 4 channels of data into a texture (RGBA) is not recommended except for an Alpha/Opacity mask in the Diffuse/Albedo's alpha channel as a texture with an alpha channel incurs more overhead than one without.
+不推荐同时把RGBA四个通道的信息保存在一张纹理中，这是由于带有Alpha通道的纹理要比不带的占用更多的资源，除非Alpha信息是以蒙版(Mask)的形式保存在Diffuse/Albedo通道中。
 
 <a name="anc-misc"></a>
 <a name="1.2.7"></a>
-### 1.2.7 Miscellaneous ![#](https://img.shields.io/badge/lint-supported-green.svg)
+### 1.2.7 杂项 ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-| Asset Type              | Prefix     | Suffix     | Notes                            |
+| 资源类型                | 前缀       | 后缀       | 备注                             |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
 | Animated Vector Field   | VFA_       |            |                                  |
 | Camera Anim             | CA_        |            |                                  |
 | Color Curve             | Curve_     | _Color     |                                  |
 | Curve Table             | Curve_     | _Table     |                                  |
-| Data Asset              | *_         |            | Prefix should be based on class. |
+| Data Asset              | *_         |            | 前缀取决于何种类型资源           |
 | Data Table              | DT_        |            |                                  |
 | Float Curve             | Curve_     | _Float     |                                  |
 | Foliage Type            | FT_        |            |                                  |
@@ -339,7 +335,7 @@ Packing 4 channels of data into a texture (RGBA) is not recommended except for a
 | Matinee Data            | Matinee_   |            |                                  |
 | Media Player            | MP_        |            |                                  |
 | Object Library          | OL_        |            |                                  |
-| Redirector              |            |            | These should be fixed up ASAP.   |
+| Redirector              |            |            | (暂时空缺，尽快解决)             |
 | Sprite Sheet            | SS_        |            |                                  |
 | Static Vector Field     | VF_        |            |                                  |
 | Touch Interface Setup   | TI_        |            |                                  |
@@ -349,7 +345,7 @@ Packing 4 channels of data into a texture (RGBA) is not recommended except for a
 <a name="1.2.8"></a>
 ### 1.2.8 Paper 2D ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-| Asset Type              | Prefix     | Suffix     | Notes                            |
+| 资源类型                | 前缀       | 后缀       | 备注                             |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
 | Paper Flipbook          | PFB_       |            |                                  |
 | Sprite                  | SPR_       |            |                                  |
@@ -359,9 +355,9 @@ Packing 4 channels of data into a texture (RGBA) is not recommended except for a
 
 <a name="anc-physics"></a>
 <a name="1.2.9"></a>
-### 1.2.9 Physics ![#](https://img.shields.io/badge/lint-supported-green.svg)
+### 1.2.9 物理 ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-| Asset Type              | Prefix     | Suffix     | Notes                            |
+| 资源类型                | 前缀       | 后缀       | 备注                             |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
 | Physical Material       | PM_        |            |                                  |
 | Physical Asset	  | PHYS_      |            |                                  |
@@ -369,26 +365,26 @@ Packing 4 channels of data into a texture (RGBA) is not recommended except for a
 
 <a name="anc-sounds"></a>
 <a name="1.2.10"></a>
-### 1.2.10 Sounds ![#](https://img.shields.io/badge/lint-supported-green.svg)
+### 1.2.10 声音 ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-| Asset Type              | Prefix     | Suffix     | Notes                            |
+| 资源类型                | 前缀       | 后缀       | 备注                             |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
 | Dialogue Voice          | DV_        |            |                                  |
 | Dialogue Wave           | DW_        |            |                                  |
 | Media Sound Wave        | MSW_       |            |                                  |
 | Reverb Effect           | Reverb_    |            |                                  |
 | Sound Attenuation       | ATT_       |            |                                  |
-| Sound Class             |            |            | No prefix/suffix. Should be put in a folder called SoundClasses |
-| Sound Concurrency       |            | _SC        | Should be named after a SoundClass |
+| Sound Class             |            |            | 没有前缀和后缀，这些资源应该放在SoundClasses目录中 |
+| Sound Concurrency       |            | _SC        | 在SoundClass之后命名             |
 | Sound Cue               | A_         | _Cue       |                                  |
 | Sound Mix               | Mix_       |            |                                  |
 | Sound Wave              | A_         |            |                                  |
 
 <a name="anc-ui"></a>
 <a name="1.2.11"></a>
-### 1.2.11 User Interface ![#](https://img.shields.io/badge/lint-supported-green.svg)
+### 1.2.11 界面 ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-| Asset Type              | Prefix     | Suffix     | Notes                            |
+| 资源类型                | 前缀       | 后缀       | 备注                             |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
 | Font                    | Font_      |            |                                  |
 | Slate Brush             | Brush_     |            |                                  |
@@ -397,25 +393,25 @@ Packing 4 channels of data into a texture (RGBA) is not recommended except for a
 
 <a name="anc-effects"></a>
 <a name="1.2.12"></a>
-### 1.2.12 Effects ![#](https://img.shields.io/badge/lint-supported-green.svg)
+### 1.2.12 特效 ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-| Asset Type              | Prefix     | Suffix     | Notes                            |
+| 资源类型                | 前缀       | 后缀       | 备注                             |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
 | Particle System         | PS_        |            |                                  |
 | Material (Post Process) | PP_        |            |                                  |
 
 <a name="2"></a>
 <a name="structure"></a>
-## 2. Content Directory Structure ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
+## 2. 目录结构 ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
 
-Equally important as asset names, the directory structure style of a project should be considered law. Asset naming conventions and content directory structure go hand in hand, and a violation of either causes unneeded chaos.
+对资源目录的规范管理和资源文件同等重要，都应该像法律一样被严格遵守。不规范的目录结构会导致严重的混乱。
 
-There are multiple ways to lay out the content of a UE4 project. In this style, we will be using a structure that relies more on filtering and search abilities of the Content Browser for those working with assets to find assets of a specific type instead of another common structure that groups asset types with folders.
+有多种不同管理UE4资源目录的方法，在本套规范中，我们尽量利用了UE4的资源浏览器的过滤和搜索功能来查找资源，而不是按照资源类型来划分目录结构。
 
-> If you are using the prefix [naming convention](#1.2) above, using folders to contain assets of similar types such as `Meshes`, `Textures`, and `Materials` is a redundant practice as asset types are already both sorted by prefix as well as able to be filtered in the content browser.
+> 如果你正确遵守了前面使用前缀的资源[命名规范](#1.2)，那么就没有必要按照资源类型创建类似于`Meshes`, `Textures`, 和 `Materials`这样的目录结构，因为你可以在过滤器中通过前缀来找到特定类型的资源
 
 <a name="2e1"><a>
-### 2e1 Example Project Content Structure
+### 2e1 目录结构示例
 <pre>
 |-- Content
     |-- <a href="#2.2">GenericShooter</a>
@@ -468,270 +464,271 @@ There are multiple ways to lay out the content of a UE4 project. In this style, 
             |-- Rifles
 </pre>
 
-The reasons for this structure are listed in the following sub-sections.
+使用这种目录结构的原因列在下面
 
-### Sections
+### 目录
 
-> 2.1 [Folder Names](#structure-folder-names)
+> 2.1 文件夹命名[Folder Names](#structure-folder-names)
 
-> 2.2 [Top-Level Folders](#structure-top-level)
+> 2.2 顶层目录[Top-Level Folders](#structure-top-level)
 
-> 2.3 [Developer Folders](#structure-developers)
+> 2.3 开发者目录[Developer Folders](#structure-developers)
 
-> 2.4 [Maps](#structure-maps)
+> 2.4 地图目录[Maps](#structure-maps)
 
-> 2.5 [Core](#structure-core)
+> 2.5 核心资源[Core](#structure-core)
 
-> 2.6 [`Assets` and `AssetTypes`](#structure-assettypes)
+> 2.6 [避免以`Assets` 或 `AssetTypes`命名](#structure-assettypes)
 
-> 2.7 [Large Sets](#structure-large-sets)
+> 2.7 超大资源[Large Sets](#structure-large-sets)
 
-> 2.8 [Material Library](#structure-material-library)
+> 2.8 材质库[Material Library](#structure-material-library)
 
 
 <a name="2.1"></a>
 <a name="structure-folder-names"><a>
-### 2.1 Folder Names ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
+### 2.1 文件夹命名 ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
 
-These are common rules for naming any folder in the content structure.
+关于文件夹的命名，有一些通用的规范
 
 <a name="2.1.1"></a>
-#### 2.1.1 Always Use PascalCase[<sup>*</sup>](#terms-cases) ![#](https://img.shields.io/badge/lint-supported-green.svg)
+#### 2.1.1 使用PascalCase大小写规范[<sup>*</sup>](#terms-cases) ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-PascalCase refers to starting a name with a capital letter and then instead of using spaces, every following word also starts with a capital letter. For example, `DesertEagle`, `RocketPistol`, and `ASeriesOfWords`.
+文件夹的命名需要遵守PascalCase规范，也就是所有单词的首字母大写，并且中间没有任何连接符。例如`DesertEagle`, `RocketPistol`, and `ASeriesOfWords`.
 
-See [Cases](#terms-cases).
+参照[大小写规范](#terms-cases).
 
 <a name="2.1.2"></a>
-#### 2.1.2 Never Use Spaces ![#](https://img.shields.io/badge/lint-supported-green.svg)
+#### 2.1.2 不要使用空格 ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-Re-enforcing [2.1.1](#2.1.1), never use spaces. Spaces can cause various engineering tools and batch processes to fail. Ideally your project's root also contains no spaces and is located somewhere such as `D:\Project` instead of `C:\Users\My Name\My Documents\Unreal Projects`.
+作为对[2.1.1](#2.1.1)的补充，绝对不要在目录名中使用空格。空格会导致引擎以及其他命令行工具出现错误，同样，也不要把你的工程放在包含有空格的目录下面，应该放在类似于`D:\Project`这样的目录里，而不是`C:\Users\My Name\My Documents\Unreal Projects`这样的目录。
 
 <a name="2.1.3"></a>
-#### 2.1.3 Never Use Unicode Characters And Other Symbols ![#](https://img.shields.io/badge/lint-supported-green.svg)
+#### 2.1.3 不要使用其他Unicode语言字符或奇怪的符号 ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-If one of your game characters is named 'Zoë', its folder name should be `Zoe`. Unicode characters can be worse than [Spaces](#2.1.2) for engineering tool and some parts of UE4 don't support Unicode characters in paths either.
+如果你游戏中的角色的名字叫做'Zoë'，那么文件夹要其名为`Zoe`。在目录名中使用这样的字符的后果甚至比使用空格还严重，因为某些引擎工具在设计时压根就没有考虑这种情况。
 
-Related to this, if your project has [unexplained issues](https://answers.unrealengine.com/questions/101207/undefined.html) and your computer's user name has a Unicode character (i.e. your name is `Zoë`), any project located in your `My Documents` folder will suffer from this issue. Often simply moving your project to something like `D:\Project` will fix these mysterious issues.
+顺便说一句，如果你的工程碰到了类似于[这篇帖子](https://answers.unrealengine.com/questions/101207/undefined.html)中的情况，并且当前使用的系统用户名中包含有Unicode字符（比如 `Zoë`），那么只要把工程从`My Documents`目录移到类似于`D:\Project`这种简单的目录里就可以解决了。
 
-Using other characters outside `a-z`, `A-Z`, and `0-9` such as `@`, `-`, `_`, `,`, `*`, and `#` can also lead to unexpected and hard to track issues on other platforms, source control, and weaker engineering tools. 
+记住永远在目录名中只使用`a-z`, `A-Z`, 和 `0-9`这些安全的字符，如果你使用了类似于`@`, `-`, `_`, `,`, `*`, 或者 `#`这样的字符，难免会碰到一些操作系统、源码管理工具或者一些弱智的工具让你吃个大亏。
 
 <a name="2.2"></a>
 <a name="structure-top-level"><a>
-### 2.2 Use A Top Level Folder For Project Specific Assets ![#](https://img.shields.io/badge/lint-supported-green.svg)
+### 2.2 使用一个顶级目录来保存所有工程资源 ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-All of a project's assets should exist in a folder named after the project. For example, if your project is named 'Generic Shooter', _all_ of it's content should exist in `Content/GenericShooter`.
+所有的工程资源都应该保存在一个以工程名命名的目录中。例如你有一个工程叫做'Generic Shooter'，那么所有该工程的资源都应该保存在`Content/GenericShooter`目录中。
 
-> The `Developers` folder is not for assets that your project relies on and therefore is not project specific. See [Developer Folders](#2.3) for details about this.
+> 开发者目录`Developers`不用受此限制，因为开发者资源是跨工程使用的，参照下面的[开发者目录](#2.3)中的详细说明。
 
-There are multiple reasons for this approach.
+使用顶级目录的原因有很多。
 
 <a name="2.2.1"></a>
-#### 2.2.1 No Global Assets
+#### 2.2.1 避免全局资源
 
-Often in code style guides it is written that you should not pollute the global namespace and this follows the same principle. When assets are allowed to exist outside of a project folder it often becomes much harder to enforce a strict structure layout as assets not in a folder encourages the bad behavior of not having to organize assets.
+通常在代码规范中会警告你不要使用全局变量以避免污染全局命名空间。基于同样的道理，不存在于工程目录中的资源对于资源管理会造成不必要的干扰。
 
-Every asset should have a purpose, otherwise it does not belong in a project. If an asset is an experimental test and shouldn't be used by the project it should be put in a [`Developer`](#2.3) folder.
+每个属于项目资源都应该有它存在的目的。如果仅仅是为了测试或者体验而使用的资源，那么这些资源应该放在[`开发者`](#2.3)目录中。
 
 <a name="2.2.2"></a>
-#### 2.2.2 Reduce Migration Conflicts
+#### 2.2.2 减少资源迁移时的冲突
 
-When working on multiple projects it is common for a team to copy assets from one project to another if they have made something useful for both. When this occurs, the easiest way to perform the copy is to use the Content Browser's Migrate functionality as it will copy over not just the selected asset but all of its dependencies.
+当一个团队有多个项目时，从一个项目中把资源拷贝到另一个项目会非常频繁，这时最方便的方法就是使用引擎的资源浏览器提供的Migrate功能，因为这个功能会把资源的依赖项一起拷贝到目标项目中。
 
-These dependencies are what can easily get you into trouble. If two project's assets do not have a top level folder and they happen to have similarly named or already previously migrated assets, a new migration can accidentally wipe any changes to the existing assets.
+这些依赖项经常造成麻烦。如果两个工程没有项目顶级目录，那么这些依赖项很容易就会被拷贝过来的同名资源覆盖掉，从而造成意外的更改。
 
-This is also the primary reason why Epic's Marketplace staff enforces the same policy for submitted assets.
+这也是为什么EPIC会强制要求商城中出售的资源要遵守同样的规定的原因
 
-After a migration, safe merging of assets can be done using the 'Replace References' tool in the content browser with the added clarity of assets not belonging to a project's top level folder are clearly pending a merge. Once assets are merged and fully migrated, there shouldn't be another top level folder in your Content tree. This method is _100%_ guaranteed to make any migrations that occur completely safe.
+执行完Migrate资源拷贝后，安全的资源合并方法是使用资源浏览器中的'替换引用'(Replace References)工具，把不属于工程目录中的资源引用替换掉。一旦资源资源完成完整的合并流程，工程目录中不应该存在另一个工程的顶级目录。这种方法可以_100%_保证资源合并的安全性。
 
 <a name="2.2.2e1"></a>
-##### 2.2.2e1 Master Material Example
+##### 2.2.2e1 举例：基础材质的麻烦
 
-For example, say you created a master material in one project that you would like to use in another project so you migrated that asset over. If this asset is not in a top level folder, it may have a name like `Content/MaterialLibrary/M_Master`. If the target project doesn't have a master material already, this should work without issue.
+举个例子，你在一个工程中创建了一个基础材质，然后你把这个材质迁移到了另一个工程中。如果你的资源结构中没有顶级目录的设计，那么这个基础材质可能放在`Content/MaterialLibrary/M_Master`这样的目录中，如果目标工程原本没有这个材质，那么很幸运暂时不会有麻烦。
 
-As work on one or both projects progress their respective master materials may change to be tailored for their specific projects due to the course of normal development.
+随着两个工程的推荐，有可能这个基础材质因工程的需求不同而发生了不同的修改。
 
-The issue comes when, for example, an artist for one project created a nice generic modular set of static meshes and someone wants to include that set of static meshes in the second project. If the artist who created the assets used material instances based on `Content/MaterialLibrary/M_Master` as they're instructed to, when a migration is performed there is a great chance of conflict for the previously migrated `Content/MaterialLibrary/M_Master` asset.
+问题出现在，其中一个项目的美术制作了一个非常不错的模型资源，另一个项目的美术想拿过来用。而这个资源使用了`Content/MaterialLibrary/M_Master`这个材质，那么当迁移这个模型时，`Content/MaterialLibrary/M_Master`这个资源就会出现冲突。
 
-This issue can be hard to predict and hard to account for. The person migrating the static meshes may not be the same person who is familiar with the development of both project's master material, and they may not be even aware that the static meshes in question rely on material instances which then rely on the master material. The Migrate tool requires the entire chain of dependencies to work however, and so it will be forced to grab `Content/MaterialLibrary/M_Master` when it copies these assets to the other project and it will overwrite the existing asset.
+这种冲突难以解决也难以预测，迁移资源的人可能压根就不熟悉工程所依赖的材质是同一个人开发的，也不清楚所依赖的资源已经发生了冲突，迁移资源必须同时拷贝资源依赖项，所以`Content/MaterialLibrary/M_Master`就被莫名其妙覆盖了。
 
-It is at this point where if the master materials for both projects are incompatible in _any way_, you risk breaking possibly the entire material library for a project as well as any other dependencies that may have already been migrated, simply because assets were not stored in a top level folder. The simple migration of static meshes now becomes a very ugly task.
+和这种情况类似，任何资源的依赖项的不兼容都会让资源在迁移中被破坏掉，如果没有资源顶级目录，资源迁移就会变成一场非常让人恶心的任务。
 
 <a name="2.2.3"></a>
-#### 2.2.3 Samples, Templates, and Marketplace Content Are Risk-Free
+#### 2.2.3 范例，模板以及商场中的资源都是安全没有风险的
 
-An extension to [2.2.2](#2.2.2), if a team member decides to add sample content, template files, or assets they bought from the marketplace, it is guaranteed that these new assets will not interfere with the project in any way unless your project's top level folder is not uniquely named.
+正如上面[2.2.2](#2.2.2)所讲，如果一个团队想把官方范例、模板以及商城中购买的资源放到自己的工程中，那么这些资源都是可以保证不会干扰现有工程的，除非你购买的资源工程和你的工程同名。
 
-You can not trust marketplace content to fully conform to the [top level folder rule](#2.2). There exist many assets that have the majority of their content in a top level folder but also have possibly modified Epic sample content as well as level files polluting the global `Content` folder.
+当然也不能完全信任商城上的资源能够完全遵守[顶级目录规则](#2.2)。的确有一些商城资源，尽管大部分资源放在了顶级目录下面，但仍然留下了部分资源污染了`Content`目录
 
-When adhering to [2.2](#2.2), the worst marketplace conflict you can have is if two marketplace assets both have the same Epic sample content. If all your assets are in a project specific folder, including sample content you may have moved into your folder, your project will never break.
+如果坚持这个原则[2.2](#2.2)，最糟糕的情况就是购买了两个不同的商场资源，结果发现他们使用了相同的EPIC的示例资源。但只要你坚持把自己的资源放在自己的工程目录中，并且把使用的EPIC示例资源也放在自己的目录中，那么自己工程也不会受到影响。
 
-#### 2.2.4 DLC, Sub-Projects, and Patches Are Easily Maintained
+#### 2.2.4 容易维护DLC、子工程、以及补丁包
 
-If your project plans to release DLC or has multiple sub-projects associated with it that may either be migrated out or simply not cooked in a build, assets relating to these projects should have their own separate top level content folder. This make cooking DLC separate from main project content far easier. Sub-projects can also be migrated in and out with minimal effort. If you need to change a material of an asset or add some very specific asset override behavior in a patch, you can easily put these changes in a patch folder and work safely without the chance of breaking the core project.
+如果你的工程打算开发DLC或者子工程，那么这些子工程所需要的资源应该迁移出来放在另一个顶级目录中，这样的结构使得编译这些版本时可以区别对待子工程中的资源。子工程中的资源的迁入和迁出代价也更小。如果你想在子项目中修改一些原有工程中的资源，那么可以把这些资源迁移到子工程目录中，这样不会破坏原有工程。
 
 <a name="2.3"></a>
 <a name="structure-developers"></a>
-### 2.3 Use Developers Folder For Local Testing ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+### 2.3 用来做临时测试的开发者目录 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-During a project's development, it is very common for team members to have a sort of 'sandbox' where they can experiment freely without risking the core project. Because this work may be ongoing, these team members may wish to put their assets on a project's source control server. Not all teams require use of Developer folders, but ones that do use them often run into a common problem with assets submitted to source control.
+在一个项目的开发期间，团队成员经常会有一个'沙箱'目录用来做测试而不会影响到工程本身。因为工作是连续的，所以即使这些'沙箱'目录也需要上传到源码服务器上保存。但并不是所有团队成员都需要这种开发者目录的，但使用开发者目录的成员来说，一旦这些目录是在服务器上管理的，总会需要一些麻烦事。
 
-It is very easy for a team member to accidentally use assets that are not ready for use which will cause issues once those assets are removed. For example, an artist may be iterating on a modular set of static meshes and still working on getting their sizing and grid snapping correct. If a world builder sees these assets in the main project folder, they might use them all over a level not knowing they could be subject to incredible change and/or removal. This causes massive amounts of re-working by everyone on the team to resolve.
+首先团队成员极容易使用这些尚未准备好的资源，这些资源一旦被删除就会引发问题。例如一个做模型的美术正在调整一个模型资源，这时一个做场景编辑的美术如果在场景中使用了这个模型，那么很可能会导致莫名其妙的问题，进而造成大量的工作浪费。
 
-If these modular assets were placed in a Developer folder, the world builder should never of had a reason to use them and the whole issue would never happen. The Content Browser has specific View Options that will hide Developer folders (they are hidden by default) making it impossible to accidentally use Developer assets under normal use.
+但如果这些模型放在开发者目录中，那么场景美术人员就没有任何理由使用这些资源。资源浏览器的缺省设置会自动过滤掉这个目录，从而保证正常情况下不可能出现被误用的情况。
 
-Once the assets are ready for use, an artist simply has to move the assets into the project specific folder and fix up redirectors. This is essentially 'promoting' the assets from experimental to production.
+一旦这些资源真正准备好，那么美术人员应该把它们移到正式的工程目录中并修复引用关系，这实际上是让资源从实验阶段'推进'到了生产阶段。
 
 <a name="2.4"></a>
 <a name="structure-maps"></a>
-### 2.4 All Map[<sup>*</sup>](#terms-level-map) Files Belong In A Folder Called Maps ![#](https://img.shields.io/badge/lint-supported-green.svg)
+### 2.4 所有的地图[<sup>*</sup>](#terms-level-map)文件应该保存在一个名为'Maps'的目录中 ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-Map files are incredibly special and it is common for every project to have its own map naming system, especially if they work with sub-levels or streaming levels. No matter what system of map organization is in place for the specific project, all levels should belong in `/Content/Project/Maps`.
+地图文件非常特殊，几乎所有工程都有自己的一套关于地图的命名规则，尤其是使用了sub-levels或者streaming levels技术时。但不管你如何组织自己的命名规则，都应该把所有地图保存在`/Content/Project/Maps`
 
-Being able to tell someone to open a specific map without having to explain where it is is a great time saver and general 'quality of life' improvement. It is common for levels to be within sub-folders of `Maps`, such as `Maps/Campaign1/` or `Maps/Arenas`, but the most important thing here is that they all exist within `/Content/Project/Maps`.
+记住，尽量使用不浪费大家的时间的方法去解释你的地图如何打开。比如通过子目录的方法去组织地图资源，例如建立 `Maps/Campaign1/` 或 `Maps/Arenas`，但最重要的是一定要都放在`/Content/Project/Maps`
 
-This also simplifies the job of cooking for engineers. Wrangling levels for a build process can be extremely frustrating if they have to dig through arbitrary folders for them. If a team's maps are all in one place, it is much harder to accidentally not cook a map in a build. It also simplifies lighting build scripts as well QA processes.
+这也有助于产品的打版本工作，如果工程里的地图保存的到处都是，版本工程师还要到处去找，就让人很恼火了，而把地图放在一个地方，做版本时就很难漏掉某个地图，对于烘培光照贴图或者质量检查都有利。
 
 <a name="2.5"></a>
 <a name="structure-core"></a>
-### 2.5 Use A `Core` Folder For Critical Blueprints And Other Assets ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+### 2.5 使用`Core`目录存储系统蓝图资源以及其他系统资源 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-Use `/Content/Project/Core` folder for assets that are absolutely fundamental to a project's workings. For example, base `GameMode`, `Character`, `PlayerController`, `GameState`, `PlayerState`, and related Blueprints should live here.
+使用`/Content/Project/Core`这个目录用来保存一个工程中最为核心的资源。例如，非常基础的`GameMode`, `Character`, `PlayerController`, `GameState`, `PlayerState`，以及如此相关的一些资源也应该放在这里。
 
-This creates a very clear "don't touch these" message for other team members. Non-engineers should have very little reason to enter the `Core` folder. Following good code structure style, designers should be making their gameplay tweaks in child classes that expose functionality. World builders should be using prefab Blueprints in designated folders instead of potentially abusing base classes.
+这个目录非常明显的告诉其他团队成员:"不要碰我！"。非引擎程序员很少有理由去碰这个目录，如果工程目录结构合理，那么游戏设计师只需要使用子类提供的功能就可以工作，负责场景编辑的员工只需要使用专用的的蓝图就可以，而不用碰到这些基础类。
 
-For example if your project requires pickups that can be placed in a level, there should exist a base Pickup class in `Core/Pickups` that defines base behavior for a pickup. Specific pickups such as a Health or Ammo should exist in a folder such as `/Content/Project/Placeables/Pickups/`. Game designers can define and tweak pickups in this folder however they please, but they should not touch `Core/Pickups` as they may unintentionally break pickups project-wide.
+例如，如果项目需要设计一种可以放置在场景中并且可以被捡起的物体，那么应该首先设计一个具有被捡起功能的基类放在`Core/Pickups`目录中，而各种具体的可以被捡起的物体诸如药瓶、子弹这样的物体，应该放在`/Content/Project/Placeables/Pickups/`这样的目录中。游戏设计师可以在这些目录中定义和设计这些物体，所以他们不应该去碰`Core/Pickups`目录下的代码，要不然可能无意中破坏工程中的其他功能
 
 <a name="2.6"></a>
 <a name="structure-assettypes"></a>
-### 2.6 Do Not Create Folders Called `Assets` or `AssetTypes` ![#](https://img.shields.io/badge/lint-supported-green.svg)
+### 2.6 不要创建名为`Assets` 或者 `AssetTypes`的目录 ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
 <a name="2.6.1"></a>
-#### 2.6.1 Creating a folder named `Assets` is redundant. ![#](https://img.shields.io/badge/lint-supported-green.svg)
+#### 2.6.1 创建一个名为`Assets`的目录是多余的。 ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-All assets are assets.
+因为本来所有目录就是用来保存资源的
 
 <a name="2.6.2"></a>
-#### 2.6.2 Creating a folder named `Meshes`, `Textures`, or `Materials` is redundant. ![#](https://img.shields.io/badge/lint-supported-green.svg)
+#### 2.6.2 创建名为`Meshes`、 `Textures`或者`Materials`的目录是多余的。 ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-All asset names are named with their asset type in mind. These folders offer only redundant information and the use of these folders can easily be replaced with the robust and easy to use filtering system the Content Browser provides.
+资源的文件名本身已经提供了资源类型信息，所以在目录名中再提供资源类型信息就是多余了，而且使用资源浏览器的过滤功能，可以非常便利的提供相同的功能。
 
-Want to view only static mesh in `Environment/Rocks/`? Simply turn on the Static Mesh filter. If all assets are named correctly, they will also be sorted in alphabetical order regardless of prefixes. Want to view both static meshes and skeletal meshes? Simply turn on both filters. this eliminates the need to potentially have to `Control-Click` select two folders in the Content Browser's tree view.
+比如想查看`Environment/Rocks/`目录下所有的静态Mesh资源？只要打开静态Mesh过滤器就可以了，如果所有资源的文件名已经正确命名，这些文件还会按照文件名和前缀正确排序，如果想查看所有静态Mesh和带有骨骼的Mesh资源，只要打开这两个过滤器就可以了，这种方法要比通过打开关闭文件夹省事多了。
 
-> This also extends the full path name of an asset for very little benefit. The `S_` prefix for a static mesh is only two characters, whereas `Meshes/` is seven characters.
+> 这种方法也能够节省路径长度，因为用前缀`S_`只有两个字符，要比使用`Meshes/`七个字符短多了。
 
-Not doing this also prevents the inevitability of someone putting a static mesh or a texture in a `Materials` folder.
+这么做其实也能防止有人把Mesh或者纹理放在`Materials`目录这种愚蠢行为。
 
 <a name="2.7"></a>
 <a name="structure-large-sets"></a>
-### 2.7 Very Large Asset Sets Get Their Own Folder Layout ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+### 2.7 超大资源要有自己的目录结构 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-This can be seen as a pseudo-exception to [2.6](#2.6).
+这节可以视为针对[2.6](#2.6)的补充
 
-There are certain asset types that have a huge volume of related files where each asset has a unique purpose. The two most common are Animation and Audio assets. If you find yourself having 15+ of these assets that belong together, they should be together.
+有一些资源类型通常文件数量巨大，而且每个作用都不同。典型的例子是动画资源和声音资源。如果你发现有15个以上的资源属于同一个逻辑类型，那么它们应该被放在一起。
 
-For example, animations that are shared across multiple characters should lay in `Characters/Common/Animations` and may have sub-folders such as `Locomotion` or `Cinematic`.
+举例来说，角色共用的动画资源应该放在`Characters/Common/Animations`目录中，并且其中应该还有诸如`Locomotion` 或者`Cinematic`的子目录
 
-> This does not apply to assets like textures and materials. It is common for a `Rocks` folder to have a large amount of textures if there are a large amount of rocks, however these textures are generally only related to a few specific rocks and should be named appropriately. Even if these textures are part of a [Material Library](#2.8).
+> 这并不适用与纹理和材质。比如`Rocks`目录通常会包含数量非常多的纹理，但每个纹理都都是属于特定的石头的，它们应该被正确命名就足够了。即使这些纹理属于[材质库](#2.8)
 
 <a name="2.8"></a>
 <a name="structure-material-library"></a>
-### 2.8 `MaterialLibrary` ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+### 2.8 材质库`MaterialLibrary` ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-If your project makes use of master materials, layered materials, or any form of reusable materials or textures that do not belong to any subset of assets, these assets should be located in `Content/Project/MaterialLibrary`.
+如果你的工程中使用了任何基础材质、分层材质，或者任何被重复使用而不属于特定模型的材质和纹理，这些资源应该放在材质库目录`Content/Project/MaterialLibrary`。
 
-This way all 'global' materials have a place to live and are easily located.
+这样可以很容易管理这些'全局'材质
 
-> This also makes it incredibly easy to enforce a 'use material instances only' policy within a project. If all artists and assets should be using material instances, then the only regular material assets that should exist are within this folder. You can easily verify this by searching for base materials in any folder that isn't the `MaterialLibrary`.
+> 这也使得'只是用材质实例'这个原则得以执行的比较容易。如果所有的美术人员都只是用材质实例，那么所有的原始材质都应该保存在这个目录中。你可以通过搜索所有不在`MaterialLibrary`中的基础材质来验证这一点。
 
-The `MaterialLibrary` doesn't have to consist of purely materials. Shared utility textures, material functions, and other things of this nature should be stored here as well within folders that designate their intended purpose. For example, generic noise textures should be located in `MaterialLibrary/Utility`.
-
-Any testing or debug materials should be within `MaterialLibrary/Debug`. This allows debug materials to be easily stripped from a project before shipping and makes it incredibly apparent if production assets are using them if reference errors are shown.
+任何用来测试或调试的材质应该保存在'MaterialLibrary/Debug`中，这样当工程正式发布时，可以很容易把这些材质从删除，因为这些材质如果不删除，可能在最终产品中非常扎眼。
 
 <a name="2.9"></a>
 <a name="structure-no-empty-folders"></a>
-### 2.9 No Empty Folders ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+### 2.9 无空文件夹 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-There simply shouldn't be any empty folders. They clutter the content browser.
+根本不应该有任何空文件夹。它们会弄乱内容浏览器。
 
-If you find that the content browser has an empty folder you can't delete, you should perform the following:
-1. Be sure you're using source control.
-1. Immediately run Fix Up Redirectors on your project.
-1. Navigate to the folder on-disk and delete the assets inside.
-1. Close the editor.
-1. Make sure your source control state is in sync (i.e. if using Perforce, run a Reconcile Offline Work on your content directory)
-1. Open the editor. Confirm everything still works as expected. If it doesn't, revert, figure out what went wrong, and try again.
-1. Ensure the folder is now gone.
-1. Submit changes to source control.
+如果您发现内容浏览器有一个空文件夹无法删除，则应执行以下操作：
+1. 确保您在使用版本管理。
+1. 立即为你的项目运行修复重定向。
+1. 浏览到硬盘上的文件夹并删除其中的资源。
+1. 关闭编辑器。
+1. 确保你的版本控制状态是同步(例如，如果在使用Perforce，在你的内容目录上运行一次Reconcile Offline Work)
+1. 打开编辑器。确认一切仍按预期工作。 如果没有，请回复，找出问题所在，然后重试。
+1. 确保文件夹现在消失了。
+1. 将修改提交到版本控制。
 
 <a name="3"></a>
 <a name="bp"></a>
-## 3. Blueprints ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
+## 3. 蓝图 ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
 
-This section will focus on Blueprint classes and their internals. When possible, style rules conform to [Epic's Coding Standard](https://docs.unrealengine.com/latest/INT/Programming/Development/CodingStandard).
+这一章会专注于蓝图和蓝图的实现。如果可能的话，本规则和[Epic官方提供的标准](https://docs.unrealengine.com/latest/INT/Programming/Development/CodingStandard)一致。
 
 Remember: Blueprinting badly bears blunders, beware! (Phrase by [KorkuVeren](http://github.com/KorkuVeren))
+(译者: 这句不懂...)
 
-### Sections
+### 目录
 
-> 3.1 [Compiling](#bp-compiling)
+> 3.1 编译[Compiling](#bp-compiling)
 
-> 3.2 [Variables](#bp-vars)
+> 3.2 变量[Variables](#bp-vars)
 
-> 3.3 [Functions](#bp-functions)
+> 3.3 函数[Functions](#bp-functions)
 
-> 3.4 [Graphs](#bp-graphs)
+> 3.4 图形节点[Graphs](#bp-graphs)
 
 <a name="3.1"></a>
 <a name="bp-compiling"></a>
-### 3.1 Compiling ![#](https://img.shields.io/badge/lint-supported-green.svg)
+### 3.1 编译 ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-All blueprints should compile with zero warnings and zero errors. You should fix blueprint warnings and errors immediately as they can quickly cascade into very scary unexpected behavior.
+需要保证所有蓝图在编译时0警告和0错误。你应该尽快修复所有警告和异常，以免它们造成可怕的麻烦。
 
-Do *not* submit broken blueprints to source control. If you must store them on source control, shelve them instead.
+*绝对不要*提交那些断开的蓝图，如果你需要通过源码服务器保存，那么必须暂时搁置它们
 
-Broken blueprints can cause problems that manifest in other ways, such as broken references, unexpected behavior, cooking failures, and frequent unneeded recompilation. A broken blueprint has the power to break your entire game.
+断开的蓝图有巨大的破坏力，而且会在蓝图之外展现威力，比如造成引用失效，未定义的行为，烘培失败，或者频繁的重新编译。一个断开的蓝图可能会毁掉整个项目。
 
 <a name="3.2"></a>
 <a name="bp-vars"></a>
 ### 3.2 Variables ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
 
-The words `variable` and `property` may be used interchangably.
+变量(`variable`)和属性(`property`)这两个词经常是可以互换的。
 
-#### Sections
+#### 目录
 
-> 3.2.1 [Naming](#bp-vars)
+> 3.2.1 命名[Naming](#bp-vars)
 
-> 3.2.2 [Editable](#bp-vars-editable)
+> 3.2.2 可编辑[Editable](#bp-vars-editable)
 
-> 3.2.3 [Categories](#bp-vars-categories)
+> 3.2.3 分类[Categories](#bp-vars-categories)
 
-> 3.2.4 [Access](#bp-vars-access)
+> 3.2.4 权限[Access](#bp-vars-access)
 
-> 3.2.5 [Advanced](#bp-vars-advanced)
+> 3.2.5 高级[Advanced](#bp-vars-advanced)
 
-> 3.2.6 [Transient](#bp-vars-transient)
+> 3.2.6 临时变量[Transient](#bp-vars-transient)
 
-> 3.2.7 [Config](#bp-vars-config)
+> 3.2.7 游戏存档[SaveGame](#bp-vars-savegame)
+
+> 3.2.8 配置[Config](#bp-vars-config)
 
 <a name="3.2.1"></a>
 <a name="bp-var-naming"></a>
-#### 3.2.1 Naming ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
+#### 3.2.1 命名规范 ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
 
 <a name="3.2.1.1"></a>
 <a name="bp-var-naming-nouns"></a>
-##### 3.2.1.1 Nouns ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+##### 3.2.1.1 使用名词 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-All non-boolean variable names must be clear, unambiguous, and descriptive nouns.
+所有非布尔类型的变量必须使用简短、清晰并且意义明确的名词作为变量名。
 
 <a name="3.2.1.2"></a>
 <a name="bp-var-naming-case"></a>
 ##### 3.2.1.2 PascalCase ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-All non-boolean variables should be in the form of [PascalCase](#terms-cases).
+所有非布尔类型的变量的大小写需要遵守[PascalCase](#terms-cases)规则。
 
 <a name="3.2.1.2e"></a>
-###### 3.2.1.2e Examples:
+###### 3.2.1.2e 范例:
 
 * `Score`
 * `Kills`
@@ -742,48 +739,48 @@ All non-boolean variables should be in the form of [PascalCase](#terms-cases).
 
 <a name="3.2.1.3"></a>
 <a name="bp-var-bool-prefix"></a>
-##### 3.2.1.3 Boolean `b` Prefix ![#](https://img.shields.io/badge/lint-supported-green.svg)
+##### 3.2.1.3 布尔变量需要前缀 `b`  ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-All booleans should be named in PascalCase but prefixed with a lowercase `b`.
+所有布尔类型变量需要遵守[PascalCase](#terms-cases)规则，但前面需要增加小写的`b`做前缀。
 
-Example: Use `bDead` and `bEvil`, **not** `Dead` and `Evil`.
+例如: 用 `bDead` 和 `bEvil`, **不要** 使用`Dead` 和 `Evil`.
 
-UE4 Blueprint editors know not to include the `b` in user-friendly displays of the variable.
+UE4的蓝图编辑器在显示变量名称时，会自动把前缀`b`去掉
 
 <a name="3.2.1.4"></a>
 <a name="bp-var-bool-names"></a>
-##### 3.2.1.4 Boolean Names ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
+##### 3.2.1.4 布尔类型变量命名规则 ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
 
 <a name="3.2.1.4.1"></a>
-###### 3.2.1.4.1 General And Independent State Information ![#](https://img.shields.io/badge/lint-supported-green.svg)
+###### 3.2.1.4.1 一般的独立信息 ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-All booleans should be named as descriptive adjectives when possible if representing general information. Do not include words that phrase the variable as a question, such as `Is`. This is reserved for functions.
+布尔类型变量如果用来表示一般的信息，名字应该使用描述性的单词，不要包含具有提问含义的词汇，比如`Is`，这个词是保留单词。
 
-Example: Use `bDead` and `bHostile` **not** `bIsDead` and `bIsHostile`.
+例如：使用`bDead` and `bHostile`，**不要**使用`bIsDead` and `bIsHostile`。
 
-Try to not use verbs such as `bRunning`. Verbs tend to lead to complex states.
+也不要使用类似于`bRunning`这样的动词，动词会让含义变得复杂。
 
 <a name="3.2.1.4.2"></a>
-###### 3.2.1.4.2 Complex States ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+###### 3.2.1.4.2 复杂状态 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-Do not to use booleans to represent complex and/or dependent states. This makes state adding and removing complex and no longer easily readable. Use an enumeration instead.
+不要使用布尔变量保存复杂的，或者需要依赖其他属性的状态信息，这会让状态变得复杂和难以理解，如果需要尽量使用枚举来代替。
 
-Example: When defining a weapon, do **not** use `bReloading` and `bEquipping` if a weapon can't be both reloading and equipping. Define an enumeration named `EWeaponState` and use a variable with this type named `WeaponState` instead. This makes it far easier to add new states to weapons.
+例如：当定义一个武器时，**不要**使用`bReloading` 和 `bEquipping`这样的变量，因为一把武器不可能即在reloading状态又在equipping状态，所以应该使用定义一个叫做`EWeaponState`的枚举，然后用一个枚举变量`WeaponState`来代替，这也使得以后增加新的状态更加容易。
 
-Example: Do **not** use `bRunning` if you also need `bWalking` or `bSprinting`. This should be defined as an enumeration with clearly defined state names.
+例如：**不要**使用`bRunning`这样的变量，因为你以后有可能还会增加`bWalking` 或者 `bSprinting`，这也应该使用一个枚举来非常清晰的定义这样的状态。
 
 <a name="3.2.1.5"></a>
 <a name="bp-vars-naming-context"></a>
-##### 3.2.1.5 Considered Context ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+##### 3.2.1.5 考虑上下文 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-All variable names must not be redundant with their context as all variable references in Blueprint will always have context.
+蓝图中的变量命名时需要考虑上下文环境，避免重复不必要的定义。
 
 <a name="3.2.1.5e"></a>
-###### 3.2.1.5e Examples:
+###### 3.2.1.5e 例如:
 
-Consider a Blueprint called `BP_PlayerCharacter`.
+假设有一个蓝图名为 `BP_PlayerCharacter`.
 
-**Bad**
+**不好的命名**
 
 * `PlayerScore`
 * `PlayerKills`
@@ -792,9 +789,9 @@ Consider a Blueprint called `BP_PlayerCharacter`.
 * `CharacterSkills`
 * `ChosenCharacterSkin`
 
-All of these variables are named redundantly. It is implied that the variable is representative of the `BP_PlayerCharacter` it belongs to because it is `BP_PlayerCharacter` that is defining these variables.
+这些变量的命名都很臃肿。因为这些变量都是属于一个角色蓝图`BP_PlayerCharacter`的，没必要在变量中再重复这一点。
 
-**Good**
+**好的命名**
 
 * `Score`
 * `Kills`
@@ -805,93 +802,92 @@ All of these variables are named redundantly. It is implied that the variable is
 
 <a name="3.2.1.6"></a>
 <a name="bp-vars-naming-atomic"></a>
-##### 3.2.1.6 Do _Not_ Include Atomic Type Names ![#](https://img.shields.io/badge/lint-supported-green.svg)
+##### 3.2.1.6 **不要**在变量中包含原生变量类型名 ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-Atomic or primitive variables are variables that represent data in their simplest form, such as booleans, integers, floats, and enumerations.
+所谓原生变量是指那些最简单的保存数据的变量类型，比如布尔类型、整数、浮点数以及枚举。
 
-Strings and vectors are considered atomic in terms of style when working with Blueprints, however they are technically not atomic.
+String和vectors在蓝图中也属于原生变量类型，但严格来讲它们其实不是。
 
-> While vectors consist of three floats, vectors are often able to be manipulated as a whole, same with rotators.
+> 由三个浮点数组成的vector经常被视为一个整体数据类型，比如旋转向量。
 
-> Do _not_ consider Text variables as atomic, they are secretly hiding localization functionality. The atomic type of a string of characters is `String`, not `Text`.
+> 文本类型变量(Text)不属于原生类型，因为它们内部还包含有国际化信息。原生类型的字符串变量类型是`String` , 而不是`Text`。
 
-Atomic variables should not have their type name in their name.
+原生类型的变量名中不应该包含变量类型名。
 
-Example: Use `Score`, `Kills`, and `Description` **not** `ScoreFloat`, `FloatKills`, `DescriptionString`.
+例如：使用`Score`, `Kills`, 以及 `Description`，**不要**使用`ScoreFloat`, `FloatKills`, `DescriptionString`。
 
-The only exception to this rule is when a variable represents 'a number of' something to be counted _and_ when using a name without a variable type is not easy to read.
+但也有例外情况，当变量的含义包含了"多少个"这样的信息，**并且**仅用一个名字无法清晰的表达出这个含义时。
 
-Example: A fence generator needs to generate X number of posts. Store X in `NumPosts` or `PostsCount` instead of `Posts` as `Posts` may potentially read as an Array of a variable type named `Post`.
+比如：游戏中一个围墙生成器，需要有一个变量保存在X轴上的生成数量，那么需要使用`NumPosts` 或者 `PostsCount`这样的变量，因为仅仅使用`Posts`可能被误解为某个保存Post的数组
 
 <a name="3.2.1.7"></a>
 <a name="bp-vars-naming-complex"></a>
-##### 3.2.1.7 Do Include Non-Atomic Type Names ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+##### 3.2.1.7 非原生类型的变量，需要包含变量类型名 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-Non-atomic or complex variables are variables that represent data as a collection of atomic variables. Structs, Classes, Interfaces, and primitives with hidden behavior such as `Text` and `Name` all qualify under this rule.
+非原生类型的变量是指那些通过数据结构保存一批原生类型的复杂变量类型，比如Structs、Classes、Interface，还有一些有类似行为的原生变量比如`Text` 和 `Name`也属于此列。
 
-> While an Array of an atomic variable type is a list of variables, Arrays do not change the 'atomicness' of a variable type.
+> 如果仅仅是原生变量组成的数组，那么这个数组仍然属于原生类型
 
-These variables should include their type name while still considering their context.
+这些变量的名字应该包含数据类型名，但同时要考虑不要重复上下文。
 
-If a class owns an instance of a complex variable, i.e. if a `BP_PlayerCharacter` owns a `BP_Hat`, it should be stored as the variable type as without any name modifications.
+如果一个类中包拥有一个复杂变量的实例，比如一个`BP_PlayerCharacter`中有另一个变量`BP_Hat`，那么这个变量的名字就不需要包含变量类型了。
 
-Example: Use `Hat`, `Flag`, and `Ability` **not** `MyHat`, `MyFlag`, and `PlayerAbility`.
+例如: 使用 `Hat`、`Flag`以及 `Ability`，**不要**使用`MyHat`、`MyFlag` 和 `PlayerAbility`
 
-If a class does not own the value a complex variable represents, you should use a noun along with the variable type.
+但是，如果一个类并不拥有这个属性，那么就需要在这个属性的名字中包含有类型的名字了
 
-Example: If a `BP_Turret` has the ability to target a `BP_PlayerCharacter`, it should store its target as `TargetPlayer` as when in the context of `BP_Turret` it should be clear that it is a reference to another complex variable type that it does not own.
+例如：一个蓝图类`BP_Turret`用来顶一个炮塔，它拥有瞄准`BP_PlayerCharacter`作为目标的能力，那么它内部会保存一个变量作为目标，名字应该是`TargetPlayer`，这个名字非常清楚的指明了这个变量的数据类型是什么。
 
 
 <a name="3.2.1.8"></a>
 <a name="bp-vars-naming-arrays"></a>
-##### 3.2.1.8 Arrays ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
+##### 3.2.1.8 数组 ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
 
-Arrays follow the same naming rules as above, but should be named as a plural noun.
+数组的命名规则通常和所包含的元素的规则一样，但注意要用复数。
 
-Example: Use `Targets`, `Hats`, and `EnemyPlayers`, **not** `TargetList`, `HatArray`, `EnemyPlayerArray`.
-
+例如：用`Targets`、`Hats`以及 `EnemyPlayers`，**不要**使用`TargetList`、`HatArray` 或者 `EnemyPlayerArray`
 
 <a name="3.2.2"></a>
 <a name="bp-vars-editable"></a>
-#### 3.2.2 Editable Variables ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
+#### 3.2.2 可编辑变量 ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
 
-All variables that are safe to change the value of in order to configure behavior of a blueprint should be marked as `Editable`.
+所有可以安全的更改数据内容的变量都需要被标记为`Editable`
 
-Conversely, all variables that are not safe to change or should not be exposed to designers should _not_ be marked as editable, unless for engineering reasons the variable must be marked as `Expose On Spawn`.
+相反，所有不能更改或者不能暴露给设计师的变量都**不能**表上可编辑标志，除非因为引擎的原因，这些变量需要被标为`Expose On Spawn`
 
-Do not arbitrarily mark variables as `Editable`.
+总之不要轻易使用`Editable`标记
 
 <a name="3.2.2.1"></a>
 <a name="bp-vars-editable-tooltips"></a>
-##### 3.2.2.1 Tooltips ![#](https://img.shields.io/badge/lint-supported-green.svg)
+##### 3.2.2.1 工具提示 ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-All `Editable` variables, including those marked editable just so they can be marked as `Expose On Spawn`, should have a description in their `Tooltip` fields that explains how changing this value affects the behavior of the blueprint.
+对于所有标记为`Editable`的变量，包括被标记为 `Expose On Spawn`的变量，都应该在其`Tooltip`内填写关于如何改变变量值，以及会产生何种效果的说明。
 
 <a name="3.2.2.2"></a>
 <a name="bp-vars-editable-ranges"></a>
-##### 3.2.2.2 Slider And Value Ranges ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+##### 3.2.2.2 滑动条(Slider)以及取值范围 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-All `Editable` variables should make use of slider and value ranges if there is ever a value that a variable should _not_ be set to.
+对于可编辑的变量，如果不适合直接输入具体数值，那么应该通过一个滑动条(Slider)并且加上取值范围来让设计师输入。
 
-Example: A blueprint that generates fence posts might have an editable variable named `PostsCount` and a value of -1 would not make any sense. Use the range fields to mark 0 as a minimum.
+举例：一个产生围墙的蓝图，拥有一个`PostsCount`的变量，那么-1显然适合不合理的输入，所以需要设上取值范围注明0是最小值
 
-If an editable variable is used in a Construction Script, it should have a reasonable Slider Range defined so that someone can not accidentally assign it a large value that could crash the editor.
+如果在构造脚本中需要一个可编辑变量，那么一定要首先定义一个合理的取值范围，要不然可能会有人设上一个非常大的值造成编辑器崩溃。
 
-A Value Range only needs to be defined if the bounds of a value are known. While a Slider Range prevents accidental large number inputs, an undefined Value Range allows a user to specify a value outside the Slider Range that may be considered 'dangerous' but still valid.
+一个变量的取值范围只有当明确知道其范围时才需要定义，因为滑块的取值范围的确能够阻止用户输入危险数值，但用户仍然能够通过手动输入的方式输入一个超出滑块范围的值给变量，如果变量的取值范围未定义，那么这个值就会变得'很危险'但还是在合理的。
 
 <a name="3.2.3"></a>
 <a name="bp-vars-categories"></a>
-#### 3.2.3 Categories ![#](https://img.shields.io/badge/lint-supported-green.svg)
+#### 3.2.3 分类 ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-If a class has only a small number of variables, categories are not required.
+如果一个类的变量很少，那么没有必要使用分类
 
-If a class has a moderate amount of variables (5-10), all `Editable` variables should have a non-default category assigned. A common category is `Config`.
+如果一个类的变量规模达到中等(5-10)，那么所有`可编辑`的变量应该自己的分类，而不应该放在缺省分类中，通常叫做 `Config`
 
-If a class has a large amount of variables, all `Editable` variables should be categorized into sub-categories using the category `Config` as the base category. Non-editable variables should be categorized into descriptive categories describing their usage. 
+如果类中的变量的数量非常大，那么所有可编辑的变量都应该放在`Config`分类的子分类下，所有不可编辑的变量应该根据它们的用途建立相关分类保存
 
-> You can define sub-categories by using the pipe character `|`, i.e. `Config | Animations`.
+> 通过在分类名中添加字符`|`，你可以直接建立子分类，比如`Config | Animations`
 
-Example: A weapon class set of variables might be organized as:
+举例：一个武器的类中的变量分类目录大致如下：
 
 	|-- Config
 	|	|-- Animations
@@ -905,74 +901,84 @@ Example: A weapon class set of variables might be organized as:
 
 <a name="3.2.4"></a>
 <a name="bp-vars-access"></a>
-#### 3.2.4 Variable Access Level ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+#### 3.2.4 变量的访问权限 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-In C++, variables have a concept of access level. Public means any code outside the class can access the variable. Protected means only the class and any child classes can access this variable internally. Private means only this class and no child classes can access this variable.
+在C++中，变量的访问类型由类成员的属性决定，Public类型的表示其他类都可以访问，Protetced类型的成员表示子类可以访问，Private类型变量表示只有类内部函数可以访问此变量。
 
-Blueprints do not have a defined concept of protected access currently.
+蓝图并没有类似的权限访问设计。
 
-Treat `Editable` variables as public variables. Treat non-editable variables as protected variables.
+就是视`可编辑`类型的变量作为Public类型变量，视不可编辑的变量作为Protected类型变量。
 
 <a name="3.2.4.1"></a>
 <a name="bp-vars-access-private"></a>
-##### 3.2.4.1 Private Variables ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+##### 3.2.4.1 私有变量 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-Unless it is known that a variable should only be accessed within the class it is defined and never a child class, do not mark variables as private. Until variables are able to be marked `protected`, reserve private for when you absolutely know you want to restrict child class usage.
+尽量不要把变量生命为private类型，除非变量一开始就打算永远被类内部访问，并且类本身也没打算被继承。尽量用`protected`，private类型用在当你有非常清楚的理由要去限制子类的能力。
 
 <a name="3.2.5"></a>
 <a name="bp-vars-advanced"></a>
-#### 3.2.5 Advanced Display ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+#### 3.2.5 高级显示 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-If a variable should be editable but often untouched, mark it as `Advanced Display`. This makes the variable hidden unless the advanced display arrow is clicked.
+如果一个变量可以被编辑，但通常不会有人碰到，那么就把它标记为高级显示`Advanced Display`。这些变量在蓝图中会缺省隐藏，除非点击节点上的高级显示箭头。
 
-To find the `Advanced Display` option, it is listed as an advanced displayed variable in the variable details list.
+有意思的是，`Advanced Display`这个选项本身，在编辑器的变量属性中也是一个高级显示类型的。
 
 <a name="3.2.6"></a>
 <a name="bp-vars-transient"></a>
-#### 3.2.6 Transient Variables ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+#### 3.2.6 Transient 变量 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-Transient variables are variables that do not need to have their value saved and loaded and have an initial value of zero or null. This is useful for references to other objects and actors who's value isn't known until run-time. This prevents the editor from ever saving a reference to it, and speeds up saving and loading of the blueprint class.
+所有不能编辑并且初始值为0或者null的变量应该被标记为`Transient`
 
-Because of this, all transient variables should always be initialized as zero or null. To do otherwise would result in hard to debug errors.
+Transient类型的变量是指那些不需要被序列化（保存或者加载），并且初始值为0或者null的变量。一般用在引用其他对象，它们的值只有在运行时才知道。
+
+这种属性的变量会被强制初始化为0或者null，并且不允许编辑器序列化它，以加快蓝图的加载时间。
 
 <a name="3.2.7"></a>
-<a name="bp-vars-config"></a>
-#### 3.2.8 Config Variables ![#](https://img.shields.io/badge/lint-supported-green.svg)
+<a name="bp-vars-savegame"></a>
+#### 3.2.7 SaveGame变量 ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-Do not use the `Config Variable` flag. This makes it harder for designers to control blueprint behavior. Config variables should only be used in C++ for rarely changed variables. Think of them as `Advanced Advanced Display` variables.
+只有从`SaveGame`继承的子类中的成员变量才能够使用SaveGame属性，并且确保该变量应该被保存时才把这个属性设置上
+
+绝对**不要**将`SaveGame` 和 `Transient`同时使用，这是明显不合理的。
+
+<a name="3.2.8"></a>
+<a name="bp-vars-config"></a>
+#### 3.2.8 Config变量 ![#](https://img.shields.io/badge/lint-supported-green.svg)
+
+不要使用`Config Variable`这个标记，这会让设计师在控制蓝图行为上更加困难。这个标记一般用在C++中，用来标记那些极少被改变的变量，你可以认为它们是那些被标上`Advanced Advanced Display`的变量
 
 <a name="3.3"></a>
 <a name="bp-functions"></a>
-### 3.3 Functions, Events, and Event Dispatchers ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+### 3.3 函数、事件以及事件派发器 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-This section describes how you should author functions, events, and event dispatchers. Everything that applies to functions also applies to events, unless otherwise noted.
+这一节用来解释应该如何管理函数、事件以及事件派发器。除非特殊说明，所有适用于函数的规则，同样适用于事件。
 
 <a name="3.3.1"></a>
 <a name="bp-funcs-naming"></a>
-#### 3.3.1 Function Naming ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+#### 3.3.1 函数命名
 
-The naming of functions, events, and event dispatchers is critically important. Based on the name alone, certain assumptions can be made about functions. For example:
+对于函数、事件以及事件派发器的命名极其重要，仅仅从一个名字本身，就有很多条件要考虑，比如说：
 
-* Is it a pure function?
-* Is it fetching state information?
-* Is it a handler?
-* Is it an RPC?
-* What is its purpose?
+* 是纯虚函数吗？?
+* 是状态查询函数吗?
+* 是事件相应函数吗?
+* 是远程调用函数吗?
+* 函数的目的是什么？
 
-These questions and more can all be answered when functions are named appropriately.
+如果命名得当，这些问题甚至更多问题的答案会在名字中体现出来。
 
 <a name="3.3.1.1"></a>
 <a name="bp-funcs-naming-verbs"></a>
-#### 3.3.1.1 All Functions Should Be Verbs ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+#### 3.3.1.1 所有函数的命名都应该是动词
 
-All functions and events perform some form of action, whether its getting info, calculating data, or causing something to explode. Therefore, all functions should all start with verbs. They should be worded in the present tense whenever possible. They should also have some context as to what they are doing.
+所有函数和事件执行者都是需要做一些动作，可能是去获取信息，也可能是数据计算，或者搞点什么事情。因此，所有函数都应该用动词开始，并且用一般现代时态，并且有上下文来表明它们究竟在做什么
 
-`OnRep` functions, event handlers, and event dispatchers are an exception to this rule.
+`OnRep` 这样的相应函数，事件具柄和事件派发器的命名不遵守这个规则。
 
-Good examples:
+好的例子:
 
-* `Fire` - Good example if in a Character / Weapon class, as it has context. Bad if in a Barrel / Grass / any ambiguous class.
-* `Jump` - Good example if in a Character class, otherwise, needs context.
+* `Fire` - 如果类是一个角色或者武器，那么这是一个好命名，如果是木桶，玻璃，那这个函数就会让人困惑了。
+* `Jump` - 如果类是一个角色，那么这是个好名字，如果不是，那么需要一些上下文来解释这个函数的含义
 * `Explode`
 * `ReceiveMessage`
 * `SortPlayerArray`
@@ -980,31 +986,31 @@ Good examples:
 * `GetCoordinates`
 * `UpdateTransforms`
 * `EnableBigHeadMode`
-* `IsEnemy` - ["Is" is a verb.](http://writingexplained.org/is-is-a-verb)
+* `IsEnemy` - ["Is" 是个动词](http://writingexplained.org/is-is-a-verb)
 
-Bad examples:
+不好的例子:
 
-* `Dead` - Is Dead? Will deaden?
+* `Dead` - 是已经死了？还是死的动作?
 * `Rock`
-* `ProcessData` - Ambiguous, these words mean nothing.
-* `PlayerState` - Nouns are ambiguous.
-* `Color` - Verb with no context, or ambiguous noun.
+* `ProcessData` - 无意义，这个名字等于没说.
+* `PlayerState` - 不能用名词
+* `Color` - 如果是动词，那么缺少上下文，如果是名词，也不行.
 
 <a name="3.3.1.2"></a>
 <a name="bp-funcs-naming-onrep"></a>
-#### 3.3.1.2 Property RepNotify Functions Always `OnRep_Variable` ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+#### 3.3.1.2 属性的状态变化响应函数应该命名为`OnRep_Variable`
 
-All functions for replicated with notification variables should have the form `OnRep_Variable`. This is forced by the Blueprint editor. If you are writing a C++ `OnRep` function however, it should also follow this convention when exposing it to Blueprints.
+所有用来响应状态变化的函数应该用`OnRep_Variable`的形式，这是由蓝图编辑器强制规定的，如果你在C++中写`OnRep`函数，应该同样遵守这个规则。
 
 <a name="3.3.1.3"></a>
 <a name="bp-funcs-naming-bool"></a>
-#### 3.3.1.3 Info Functions Returning Bool Should Ask Questions ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+#### 3.3.1.3 返回布尔变量的信息查询函数应该是问询函数
 
-When writing a function that does not change the state of or modify any object and is purely for getting information, state, or computing a yes/no value, it should ask a question. This should also follow [the verb rule](#bp-funcs-naming-verbs).
+如果一个函数不改变类的状态，并且只是返回信息、状态或者计算返回给调用者yes/no，这应该是一个问询函数。同样遵守[动词规则](#bp-funcs-naming-verbs)。
 
-This is extremely important as if a question is not asked, it may be assumed that the function performs an action and is returning whether that action succeeded.
+非常重要的是，应该假定这样的函数其实就是执行某种动作，并且返回动作是否执行成功。
 
-Good examples:
+好的例子:
 
 * `IsDead`
 * `IsOnFire`
@@ -1012,30 +1018,30 @@ Good examples:
 * `IsSpeaking`
 * `IsHavingAnExistentialCrisis`
 * `IsVisible`
-* `HasWeapon` - ["Has" is a verb.](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html)
-* `WasCharging` - ["Was" is past-tense of "be".](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html) Use "was" when referring to 'previous frame' or 'previous state'.
-* `CanReload` - ["Can" is a verb.](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html)
+* `HasWeapon` - ["Has" 是动词.](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html)
+* `WasCharging` - ["Was" 是动词"be"的过去式](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html) 用 "was"表示查询以前的状态
+* `CanReload` - ["Can"是动词](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html)
 
-Bad examples:
+坏的例子:
 
-* `Fire` - Is on fire? Will fire? Do fire?
-* `OnFire` - Can be confused with event dispatcher for firing.
-* `Dead` - Is dead? Will deaden?
-* `Visibility` - Is visible? Set visibility? A description of flying conditions?
+* `Fire` - 是查询正在开火？还是查询能不能开火？
+* `OnFire` - 有可能和事件派发器函数混淆
+* `Dead` - 是查询已经死亡？还是查询会不会死亡？
+* `Visibility` - 是查询可见状态？还是设置可见状态？
 
 <a name="3.3.1.4"></a>
 <a name="bp-funcs-naming-eventhandlers"></a>
-#### 3.3.1.4 Event Handlers and Dispatchers Should Start With `On` ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+#### 3.3.1.4 事件的响应函数和派发函数都应该以`On`开头
 
-Any function that handles an event or dispatches an event should with `On` and continue to follow [the verb rule](#bp-funcs-naming-verbs). The verb may move to the end however if past-tense reads better.
+事件的响应函数和派发函数都应该以`On`开头，然后遵守[动词规则](#bp-funcs-naming-verbs)，如果是过去式，那么动词应该移到最后以方便阅读
 
-[Collocations](http://dictionary.cambridge.org/us/grammar/british-grammar/about-words-clauses-and-sentences/collocation) of the word `On` are exempt from following the verb rule.
+在遵守动词规则的时候，需要优先考虑英语中的[固定句式](http://dictionary.cambridge.org/us/grammar/british-grammar/about-words-clauses-and-sentences/collocation) 
 
-`Handle` is not allowed. It is 'Unreal' to use `On` instead of `Handle`, while other frameworks may prefer to use `Handle` instead of `On`.
+有一些系统用`Handle`来表示事件响应，但在'Unreal'用的是`On`而不是`Handle`，
 
-Good examples:
+好的例子:
 
-* `OnDeath` - Common collocation in games
+* `OnDeath` - 游戏中非常常见
 * `OnPickup`
 * `OnReceiveMessage`
 * `OnMessageRecieved`
@@ -1043,7 +1049,7 @@ Good examples:
 * `OnClick`
 * `OnLeave`
 
-Bad examples:
+坏的例子:
 
 * `OnData`
 * `OnTarget`
@@ -1052,129 +1058,130 @@ Bad examples:
 
 <a name="3.3.1.5"></a>
 <a name="bp-funcs-naming-rpcs"></a>
-#### 3.3.1.5 Remote Procedure Calls Should Be Prefixed With Target ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+#### 3.3.1.5 远程调用函数应该用目标作为前缀
 
-Any time an RPC is created, it should be prefixed with either `Server`, `Client`, or `Multicast`. No exceptions.
+任何时候创建RPC函数，都应该把目标作为前缀放在前面，例如`Server`、 `Client`或者 `Multicast`，没有例外。
 
-After the prefix, follow all other rules regarding function naming.
+前缀之后的部分，遵守上面的其他规则。
 
-Good examples:
+好的例子:
 
 * `ServerFireWeapon`
 * `ClientNotifyDeath`
 * `MulticastSpawnTracerEffect`
 
-Bad examples:
+坏的例子:
 
-* `FireWeapon` - Does not indicate its an RPC of some kind.
-* `ServerClientBroadcast` - Confusing.
-* `AllNotifyDeath` - Use `Multicast`, never `All`.
-* `ClientWeapon` - No verb, ambiguous.
+* `FireWeapon` - 没有使用目标前缀
+* `ServerClientBroadcast` - 混淆.
+* `AllNotifyDeath` - 用 `Multicast`, 不要用 `All`.
+* `ClientWeapon` - 没有用动词, 让人困惑.
 
 
 <a name="3.3.2"></a>
 <a name="bp-funcs-return"></a>
-#### 3.3.2 All Functions Must Have Return Nodes ![#](https://img.shields.io/badge/lint-supported-green.svg)
+#### 3.3.2 所有函数都应该有返回节点 ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-All functions must have return nodes, no exceptions.
+所有函数都应该有返回节点，没有例外。
 
-Return nodes explicitly note that a function has finished its execution. In a world where blueprints can be filled with `Sequence`, `ForLoopWithBreak`, and backwards reroute nodes, explicit execution flow is important for readability, maintenance, and easier debugging.
+返回节点明确标注了蓝图到此执行完毕。蓝图中的结构有可能有并行结构`Sequence`、循环结构`ForLoopWithBreak`或者逆向的回流节点组成，明确结束节点使蓝图易于阅读维护和调试。
 
-The Blueprint compiler is able to follow the flow of execution and will warn you if there is a branch of your code with an unhandled return or bad flow if you use return nodes.
+如果启用了返回节点，当你的蓝图中有分支没有正常返回，或者流程有问题，蓝图的编译器会提出警告。
 
-In situations like where a programmer may add a pin to a Sequence node or add logic after a for loop completes but the loop iteration might return early, this can often result in an accidental error in code flow. The warnings the Blueprint compiler will alert everyone of these issues immediately.
+比如说，有程序员在并行序列中添加了一个新的分支，或者在循环体外添加逻辑但没有考虑到循环中的意外返回，那么这些情况都会造成蓝图的执行序列出现意外。蓝图编译器会立即给这些情况提出警告。
 
 <a name="3.3.3"></a>
 <a name="bp-graphs-funcs-node-limit"></a>
-#### 3.3.3 No Function Should Have More Than 50 Nodes ![#](https://img.shields.io/badge/lint-supported-green.svg)
+#### 3.3.3 函数不应该超过50个节点 ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-Simply, no function should have more than 50 nodes. Any function this big should be broken down into smaller functions for readability and ease of maintenance.
+简单地说，没有函数应该有超过50个节点。 这么大的函数都应该分解为更小的函数，以提高可读性和易于维护。
 
-The following nodes are not counted as they are deemed to not increase function complexity:
+下列节点不会增加函数复杂性：
 
-* Comment
-* Route
-* Cast
-* Getting a Variable
-* Breaking a Struct
-* Function Entry
-* Self
+* 注释
+* 路由节点
+* 转换
+* 获得变量值
+* 破开结构
+* 函数入口
+* Self节点
 
 <a name="3.3.4"></a>
 <a name="bp-graphs-funcs-description"></a>
-#### 3.3.4 All Public Functions Should Have A Description ![#](https://img.shields.io/badge/lint-supported-green.svg)
+#### 3.3.4 所有公开函数都必须带描述 ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-This rule applies more to public facing or marketplace blueprints, so that others can more easily navigate and consume your blueprint API.
+此规则更适用于面向公众或市场的蓝图，以便其他人可以更轻松地浏览和使用您的蓝图API。
 
-Simply, any function that has an access specificer of Public should have its description filled out. 
+简单地说，任何具有Public访问权限的函数都应该填写其描述。
 
 <a name="3.3.5"></a>
 <a name="bp-graphs-funcs-plugin-category"></a>
-#### 3.3.5 All Custom Static Plugin `BlueprintCallable` Functions Must Be Categorized By Plugin Name ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+#### 3.3.5 所有自定义静态插件'BlueprintCallable`函数都必须通过插件名进行分类 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-If your project includes a plugin that defines `static` `BlueprintCallable` functions, they should have their category set to the plugin's name or a subset category of the plugin's name.
+如果你的项目中包含插件，其中定义了'静态` `BlueprintCallable`函数，它们的分类应该被设置为插件名或插件名下的子分类。
 
-For example, `Zed Camera Interface` or `Zed Camera Interface | Image Capturing`.
+例如, `Zed Camera Interface` 或 `Zed Camera Interface | Image Capturing`.
 
 <a name="3.4"></a>
 <a name="bp-graphs"></a>
-### 3.4 Blueprint Graphs ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+### 3.4 蓝图图形
 
+本节包含了关于蓝图图形的内容
 This section covers things that apply to all Blueprint graphs.
 
 <a name="3.4.1"></a>
 <a name="bp-graphs-spaghetti"></a>
-#### 3.4.1 No Spaghetti ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+#### 3.4.1 不要画‘意面’
 
-Wires should have clear beginnings and ends. You should never have to mentally untangle wires to make sense of a graph. Many of the following sections are dedicated to reducing spaghetti.
+蓝图中所有连线都应该有清晰的开始点和结束点。你的蓝图不应该让阅读者在一堆乱糟糟的线中翻来翻去。以下内容是帮助你避免‘意大利面’样式的蓝图产生。
 
 <a name="3.4.2"></a>
 <a name="bp-graphs-align-wires"></a>
-#### 3.4.2 Align Wires Not Nodes ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+#### 3.4.2 保持连线对齐，而不是节点
 
-Always align wires, not nodes. You can't always control the size and pin location on a node, but you can always control the location of a node and thus control the wires. Straight wires provide clear linear flow. Wiggly wires wear wits wickedly. You can straighten wires by using the Straigten Connections command with BP nodes selected. Hotkey: Q
+不要试图让节点对齐，对齐的应该是连线。你无法控制一个节点的大小和上面连接点的位置，但你能通过控制节点的位置来控制连线。笔直的连线让整个蓝图清晰美观，歪歪扭扭的连线会让蓝图丑陋不堪。你可以通过蓝图编辑器提供的功能直接让连线变直，方法是选择好节点，用快捷键Q
 
-Good example: The tops of the nodes are staggered to keep a perfectly straight white exec line.
+好的例子: 所有上面的节点的执行线都保持为直线。
 ![Aligned By Wires](https://github.com/allar/ue4-style-guide/raw/master/images/bp-graphs-align-wires-good.png "Aligned By Wires")
 
-Bad Example: The tops of the nodes are aligned creating a wiggly white exec line.
+不好的例子: 右上角节点的执行线歪了
 ![Bad](https://github.com/allar/ue4-style-guide/raw/master/images/bp-graphs-align-wires-bad.png "Wiggly")
 
-Acceptable Example: Certain nodes might not cooperate no matter how you use the alignment tools. In this situation, try to minimize the wiggle by bringing the node in closer.
+可接受的例子: 有些节点无论你怎么用对齐工具都无法对齐，这种情况下，就尽量缩短它们之间连线的长度。
 ![Acceptable](https://github.com/allar/ue4-style-guide/raw/master/images/bp-graphs-align-wires-acceptable.png "Acceptable")
 
 <a name="3.4.3"></a>
 <a name="bp-graphs-exec-first-class"></a>
-#### 3.4.3 White Exec Lines Are Top Priority ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+#### 3.4.3 白色的可执行线优先级最高 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-If you ever have to decide between straightening a linear white exec line or straightening data lines of some kind, always straighten the white exec line.
+如果您必须决定是调整线性白色执行线还是调整某种类型的数据线，请始终拉直白色执行线。
 
 <a name="3.4.4"></a>
 <a name="bp-graphs-block-comments"></a>
-#### 3.4.4 Graphs Should Be Reasonably Commented ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+#### 3.4.4 蓝图应该添加合理的注释 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-Blocks of nodes should be wrapped in comments that describe their higher-level behavior. While every function should be well named so that each individual node is easily readable and understandable, groups of nodes contributing to a purpose should have their purpose described in a comment block. If a function does not have many blocks of nodes and its clear that the nodes are serving a direct purpose in the function's goal, then they do not need to be commented as the function name and  description should suffice.
+应该将节点块包装在描述其较高级别行为的注释中。 尽管每个函数都应该有明确的名称，以便每个单独的节点都易于阅读和理解，但有助于实现目的的节点组应该在注释块中描述其目的。 如果一个函数没有多个节点块，并且能够清楚地表明这个节点正在为函数的目标服务，那么它们不需要被注释，因为函数名和描述就足够了。
 
 <a name="3.4.5"></a>
 <a name="bp-graphs-cast-error-handling"></a>
-#### 3.4.5 Graphs Should Handle Casting Errors Where Appropriate ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+#### 3.4.5 蓝图应该在合适的情况下处理类型转换错误 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-If a function or event assumes that a cast always succeeds, it should appropriately report a failure in logic if the cast fails. This lets others know why something that is 'supposed to work' doesn't. A function should also attempt a graceful recover after a failed cast if its known that the reference being casted could ever fail to be casted.
+如果函数或事件假定类型转换总是成功的话，它应该在转换失败时适当地报告逻辑失败。 这让其他人知道为什么“应该有效”的东西没有生效。 如果函数知道被引用的引用可能永远无法被成功转换类型，那么该函数也应该尝试在失败的类型转换后进行优雅的恢复。
 
-This does not mean every cast node should have its failure handled. In many cases, especially events regarding things like collisions, it is expected that execution flow terminates on a failed cast quietly.
+这并不意味着每个类型转换节点都应该处理失败。 在许多情况下，特别是有关碰撞事件的事件，预计执行流程会在安静地在转换类型失败时结束。
 
 <a name="3.4.6"></a>
 <a name="bp-graphs-dangling-nodes"></a>
-#### 3.4.6 Graphs Should Not Have Any Dangling / Loose / Dead Nodes ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+#### 3.4.6 蓝图中不应该存在任何空置 / 松散 / 死节点 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-All nodes in all blueprint graphs must have a purpose. You should not leave dangling blueprint nodes around that have no purpose or are not executed.
+蓝图中的所有节点都必须有目的。不应该保留没有目的或不执行的空置蓝图节点。
 
 <a name="4"></a>
 <a name="Static Meshes"></a>
 <a name="s"></a>
-## 4. Static Meshes ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
+## 4. 静态网格模型 ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
 
-This section will focus on Static Mesh assets and their internals.
+本节将重点介绍静态网格模型资源及其内部。
 
 ### Sections
 
@@ -1182,62 +1189,62 @@ This section will focus on Static Mesh assets and their internals.
 
 > 4.2 [LODs](#s-lods)
 
-> 4.3 [Modular Socketless Snapping](#s-modular-snapping)
+> 4.3 [模块化无插槽对齐](#s-modular-snapping)
 
-> 4.4 [Must Have Collision](#s-collision)
+> 4.4 [必须有碰撞](#s-collision)
 
-> 4.5 [Correct Scale](#s-scaled)
+> 4.5 [比例正确](#s-scaled)
 
 <a name="4.1"></a>
 <a name="s-uvs"></a>
-### 4.1 Static Mesh UVs ![#](https://img.shields.io/badge/lint-supported-green.svg)
+### 4.1 静态网格模型UVs ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-If Linter is reporting bad UVs and you can't seem to track it down, open the resulting `.log` file in your project's `Saved/Logs` folder for exact details as to why its failing. I am hoping to include these messages in the Lint report in the future.
+如果Linter报告的是不良UV，并且您无法追踪它，请在项目的“Saved / Logs”文件夹中打开生成的“.log”文件，以获取有关其失败原因的详细信息。 我希望将来在Linter报告中包含这些信息。
 
 <a name="4.1.1"></a>
 <a name="s-uvs-no-missing"></a>
-#### 4.1.1 All Meshes Must Have UVs ![#](https://img.shields.io/badge/lint-supported-green.svg)
+#### 4.1.1 所有网格模型都必须有UVs ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-Pretty simple. All meshes, regardless how they are to be used, should not be missing UVs.
+很简单。所有模型，无论它们是如何被使用的，都不应该缺少UVs。
 
 <a name="4.1.2"></a>
 <a name="s-uvs-no-overlapping"></a>
-#### 4.1.2 All Meshes Must Not Have Overlapping UVs for Lightmaps ![#](https://img.shields.io/badge/lint-supported-green.svg)
+#### 4.1.2 所有网格模型在用于光照贴图的UVs上必须不存在重叠 ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-Pretty simple. All meshes, regardless how they are to be used, should have valid non-overlapping UVs.
+很简单。所有模型，无论它们是如何被使用的，都必须有有效的不重叠的光照贴图UVs。
 
 <a name="4.2"></a>
 <a name="s-lods"></a>
-### 4.2 LODs Should Be Set Up Correctly ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+### 4.2 应该正确设置LODs ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-This is a subjective check on a per-project basis, but as a general rule any mesh that can be seen at varying distances should have proper LODs.
+这是对每个项目的主观检查，但作为一般规则，任何可以在不同距离看到的网格模型都应具有适当的LOD。
 
 <a name="4.3"></a>
 <a name="s-modular-snapping"></a>
-### 4.3 Modular Socketless Assets Should Snap To The Grid Cleanly ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+### 4.3 模块化无插槽资源应该干净地对齐网格 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-This is a subjective check on a per-asset basis, however any modular socketless assets should snap together cleanly based on the project's grid settings.
+这是对每个资产的主观检查，但是任何模块化无插槽资源都应该基于项目的网格设置干净地对齐。
 
-It is up to the project whether to snap based on a power of 2 grid or on a base 10 grid. However if you are authoring modular socketless assets for the marketplace, Epic's requirement is that they snap cleanly when the grid is set to 10 units or bigger.
+该项目是否基于2格网格或基于10格网格进行对齐。 但是，如果您正在为虚幻商城创作模块化无插座资产，Epic的要求是当网格设置为10个单位或更大时，它们会干净地对齐。
 
 <a name="4.4"></a>
 <a name="s-collision"></a>
-### 4.4 All Meshes Must Have Collision ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+### 4.4 所有网格模型都必须有碰撞 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-Regardless of whether an asset is going to be used for collision in a level, all meshes should have proper collision defined. This helps the engine with things such as bounds calculations, occlusion, and lighting. Collision should also be well-formed to the asset.
+无论资源是否将用于某个关卡中的碰撞，所有网格都应该定义合适的碰撞。 这有助于引擎的边界计算，遮挡和照明等。 资源碰撞也应该具有良好的形状。
 
 <a name="4.5"></a>
 <a name="s-scaled"></a>
-### 4.5 All Meshes Should Be Scaled Correctly ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+### 4.5 所有网格模型都必须被正确缩放 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-This is a subjective check on a per-project basis, however all assets should be scaled correctly to their project. Level designers or blueprint authors should not have to tweak the scale of meshes to get them to confirm in the editor. Scaling meshes in the engine should be treated as a scale override, not a scale correction.
+这是对每个项目的主观检查，但是所有资源都应该正确地按比例缩放到他们的项目中。 关卡设计师或蓝图程序员不应该调整网格的大小以便让他们在编辑器中进行确认。 应该将引擎中的缩放网格视为比例覆盖，而不是进行比例校正。
 
 <a name="5"></a>
 <a name="Particle Systems"></a>
 <a name="ps"></a>
-## 5. Particle Systems ![#](https://img.shields.io/badge/lint-supported-green.svg)
+## 5. 粒子系统 ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-This section will focus on Particle System assets and their internals.
+本节将关注粒子系统资源及其内部。
 
 ### Sections
 
@@ -1245,18 +1252,18 @@ This section will focus on Particle System assets and their internals.
 
 <a name="5.1"></a>
 <a name="ps-emitter-naming"></a>
-### 5.1 Emitter Naming ![#](https://img.shields.io/badge/lint-supported-green.svg)
+### 5.1 发射器命名 ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-All emitters in a Particle System should be named something descriptive and not left to their default name "Particle Emitter".
+粒子系统中的所有发射器都应该被命名为具有描述性的名称，而不是保留其默认名称“Particle Emitter”。
 
 <a name="6"></a>
 <a name="Levels"></a>
 <a name="levels"></a>
-## 6. Levels / Maps ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
+## 6. 关卡 / 地图 ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
 
-[See Terminology Note](#terms-level-map) regarding "levels" vs "maps".
+[见术语说明](#terms-level-map) 关于 "关卡" 和 "地图"。
 
-This section will focus on Level assets and their internals.
+本节将关注关卡资源及其内部。
 
 ### Sections
 
@@ -1270,57 +1277,57 @@ This section will focus on Level assets and their internals.
 
 <a name="6.1"></a>
 <a name="levels-no-errors-or-warnings"></a>
-### 6.1 No Errors Or Warnings ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
+### 6.1 无错误或警告 ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
 
-All levels should load with zero errors or warnings. If a level loads with any errors or warnings, they should be fixed immediately to prevent cascading issues.
+所有关卡在加载后，应该是0错误和0警告的。如果关卡加载后存在错误或警告，应该立即修复它们，避免出现级联问题。
 
-You can run a map check on an open level in the editor by using the console command "map check".
+你可以在编辑器中打开需要检查的关卡，使用控制台命令"map check"进行检查。
 
-Please note: Linter is even more strict on this than the editor is currently, and will catch load errors that the editor will resolve on its own.
+请注意：Linter比当前编辑器更加严格，并且会捕获编辑器将自行解决的加载错误。
 
 <a name="6.2"></a>
 <a name="levels-lighting-should-be-built"></a>
-### 6.2 Lighting Should Be Built ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+### 6.2 光照应该构建完成 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-It is normal during development for levels to occasionaly not have lighting built. When doing a test/internal/shipping build or any build that is to be distributed however, lighting should always be built.
+在开发过程中偶尔没有光照是很正常的。 在做测试/内部/发布或任何要发布的构建时，应始终构建光照。
 
 <a name="6.3"></a>
 <a name="levels-no-visible-z-fighting"></a>
-### 6.3 No Player Visible Z Fighting ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+### 6.3 不存在玩家可见的Z Fighting ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-Levels should not have any [z-fighting](https://en.wikipedia.org/wiki/Z-fighting) in all areas visible to the player. 
+关卡中所有玩家可见的区域不能存在[z-fighting](https://en.wikipedia.org/wiki/Z-fighting)。
 
 <a name="6.4"></a>
 <a name="levels-mp-rules"></a>
-### 6.4 Marketplace Specific Rules ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+### 6.4 虚幻商场特定规则 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-If a project is to be sold on the UE4 Marketplace, it must follow these rules.
+如果项目需要放到UE4商城上销售，它必须遵循以下规则。
 
 <a name="6.4.1"></a>
 <a name="levels-mp-rules-overview"></a>
-### 6.4.1 Overview Level ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+### 6.4.1 Overview 关卡 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-If your project contains assets that should be visualized or demoed, you must have a map within your project that contains the name "Overview".
+如果项目中包含可视化或演示的资源，那么项目中必须包含名为"Overview"关卡。
 
-This overview map, if it is visualizing assets, should be set up according to [Epic's guidelines](http://help.epicgames.com/customer/en/portal/articles/2592186-marketplace-submission-guidelines-preparing-your-assets#Required%20Levels%20and%20Maps).
+如果是可视化资源，这个overview关卡应该根据[Epic指南](http://help.epicgames.com/customer/en/portal/articles/2592186-marketplace-submission-guidelines-preparing-your-assets#Required%20Levels%20and%20Maps)进行设置。
 
 For example, `InteractionComponent_Overview`.
 
 <a name="6.4.2"></a>
 <a name="levels-mp-rules-demo"></a>
-### 6.4.2 Demo Level ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+### 6.4.2 Demo 关卡 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-If your project contains assets that should be demoed or come with some sort of tutorial, you must have a map within your project that contains the name "Demo". This level should also contain documentation within it in some form that illustrates how to use your project. See Epic's Content Examples project for good examples on how to do this.
+如果您的项目包含演示或带有某种教程的资源，则必须在项目中包含名为“Demo”的地图。 这个关卡还应该包含一些说明如何使用你的项目的形式的文档。 请参阅Epic的内容示例项目，了解如何执行此操作的示例。
 
-If your project is a gameplay mechanic or other form of system as opposed to an art pack, this can be the same as your "Overview" map.
+如果你的项目是一个游戏机制或其他形式的系统而不是美术包，这可以与你的“Overview”地图相同。
 
-For example, `InteractionComponent_Overview_Demo`, `ExplosionKit_Demo`.
+例如, `InteractionComponent_Overview_Demo`, `ExplosionKit_Demo`。
 
 <a name="7"></a>
 <a name="textures"></a>
-## 7. Textures ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+## 7. 贴图 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-This section will focus on Texture assets and their internals.
+本节将关注贴图及其内部。
 
 ### Sections
 
@@ -1334,32 +1341,31 @@ This section will focus on Texture assets and their internals.
 
 <a name="7.1"></a>
 <a name="textures-dimensions"></a>
-### 7.1 Dimensions Are Powers of 2 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+### 7.1 每一维都是2的幂 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-All textures, except for UI textures, must have its dimensions in multiples of powers of 2. Textures do not have to be square.
+所有贴图（UI贴图除外）的尺寸都必须为2的幂数。贴图不必是方形的。
 
-For example, `128x512`, `1024x1024`, `2048x1024`, `1024x2048`, `1x512`.
+例如, `128x512`, `1024x1024`, `2048x1024`, `1024x2048`, `1x512`。
 
 <a name="7.2"></a>
 <a name="textures-density"></a>
-### 7.2 Texture Density Should Be Uniform ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+### 7.2 贴图密度应该一致 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-All textures should be of a size appropriate for their standard use case. Appropriate texture density varies from project to project, but all textures within that project should have a consistent density.
+所有贴图的尺寸应该适合其标准用例。 每个项目的贴图密度都不相同，但该项目中的所有贴图应具有一致的密度。
 
-For example, if a project's texture density is 8 pixel per 1 unit, a texture that is meant to be applied to a 100x100 unit cube should be 1024x1024, as that is the closest power of 2 that matches the project's texture density. 
+例如，如果一个项目的贴图密度是每1单位8个像素，则意图应用于100×100单位立方体的贴图应该是1024x1024，因为这是与项目的贴图密度相匹配的最接近2的幂。
 
 <a name="7.3"></a>
 <a name="textures-max-size"></a>
-### 7.3 Textures Should Be No Bigger than 8192 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+### 7.3 贴图大小不应该大于8192 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-No texture should have a dimension that exceeds 8192 in size, unless you have a very explicit reason to do so. Often, using a texture this big is simply just a waste of resources.
+在尺寸是，纹理的尺寸不能超过8192的尺寸，除非您有明确的理由这样做。 通常，使用这种大小的纹理仅仅会浪费资源。
 
 <a name="7.4"></a>
 <a name="textures-group"></a>
-### 7.4 Textures Should Be Grouped Correctly ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+### 7.4 正确组织贴图 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-Every texture has a Texture Group property used for LODing, and this should be set correctly based on its use. For example, all UI textures should belong in the UI texture group.
-
+每个贴图都有用于LOD化的贴图组(Texture Group)属性，应该根据它的使用目的正确设置。例如，所有UI贴图都应该属于UI贴图组。
 
 ## Contributors
 
@@ -1368,17 +1374,16 @@ Every texture has a Texture Group property used for LODing, and this should be s
 * [billymcguffin](https://github.com/billymcguffin)
 * [akenatsu](https://github.com/akenatsu)
 
-## License
+## 版权
 
 Copyright (c) 2016 Gamemakin LLC
 
-See [LICENSE](/LICENSE)
+查看版权协议 [LICENSE](/LICENSE)
 
-**[⬆ Back to Top](#table-of-contents)**
-
+**[⬆ 回到最顶端](#toc)**
 
 ## Amendments
 
-We encourage you to fork this guide and change the rules to fit your team's style guide. Below, you may list some amendments to the style guide. This allows you to periodically update your style guide without having to deal with merge conflicts.
+我们鼓励您分发本指南并更改规则，以获得适合您团队的风格指南。 下面，您可以列出一些对风格指南的修改。 这使您可以定期更新风格指南，而无需处理合并冲突。
 
 # };
