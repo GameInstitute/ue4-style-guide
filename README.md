@@ -22,7 +22,7 @@ Gamemakin LLC 有一个公开的讨论板块，地址是http://discord.gamemak.i
 * [韩语翻译](https://github.com/ymkim50/ue4-style-guide/blob/master/README_Kor.md) by ymkim50
 * [俄语翻译](https://github.com/CosmoMyzrailGorynych/ue4-style-guide-rus/blob/master/README.md) by CosmoMyzrailGorynych
 * [日语翻译](https://github.com/akenatsu/ue4-style-guide/blob/master/README.jp.md) by akenatsu
-* [中文翻译](https://github.com/skylens-inc/ue4-style-guide/blob/master/README.md) by Beijing Skylens Tech.
+* [中文翻译](https://github.com/GameInstitute/ue4-style-guide/blob/master/README.md) by GameInstitute.
 
 ## 重要术语
 
@@ -650,13 +650,13 @@ Gamemakin LLC不是律师，但请不要将非法操作和行为引入项目，�
 
 如果您发现内容浏览器有一个空文件夹无法删除，则应执行以下操作：
 1. 确保您在使用版本管理。
-1. 立即为你的项目运行修复重定向。
-1. 浏览到硬盘上的文件夹并删除其中的资源。
-1. 关闭编辑器。
-1. 确保你的版本控制状态是同步(例如，如果在使用Perforce，在你的内容目录上运行一次Reconcile Offline Work)
-1. 打开编辑器。确认一切仍按预期工作。 如果没有，请回复，找出问题所在，然后重试。
-1. 确保文件夹现在消失了。
-1. 将修改提交到版本控制。
+2. 立即为你的项目运行修复重定向。
+3. 浏览到硬盘上的文件夹并删除其中的资源。
+4. 关闭编辑器。
+5. 确保你的版本控制状态是同步(例如，如果在使用Perforce，在你的内容目录上运行一次Reconcile Offline Work)
+6. 打开编辑器。确认一切仍按预期工作。 如果没有，请回复，找出问题所在，然后重试。
+7. 确保文件夹现在消失了。
+8. 将修改提交到版本控制。
 
 <a name="3"></a>
 <a name="bp"></a>
